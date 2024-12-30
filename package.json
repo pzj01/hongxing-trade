@@ -16,9 +16,11 @@
   "dependencies": {
     "@primevue/auto-import-resolver": "^4.2.5",
     "@primevue/themes": "^4.2.5",
+    "@types/leaflet": "^1.9.15",
     "@vueuse/core": "^12.2.0",
     "chart.js": "^4.4.7",
     "date-fns": "^4.1.0",
+    "leaflet": "^1.9.4",
     "lucide-vue-next": "^0.469.0",
     "pinia": "^2.3.0",
     "primevue": "^4.2.5",

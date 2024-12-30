@@ -28,16 +28,16 @@
           </h3>
           <ul class="text-sm">
             <li class="mb-2 flex items-center gap-2">
-              <i i-carbon-location-filled />
-              <span>北京市朝阳区xxx街xxx号</span>
+              <i i-carbon-location-filled h-7 w-7 />
+              <span>江西省萍乡市安源区东大街张家大屋社区宝塔坡6号城南客运站综合市场A栋</span>
             </li>
             <li class="mb-2 flex items-center gap-2">
               <i i-carbon-phone-filled />
-              <span>+86 123 4567 8900</span>
+              <span>+86 400-888-9999</span>
             </li>
             <li class="flex items-center gap-2">
               <i i-carbon-email />
-              <span>info@foodcompany.com</span>
+              <span>contact@pxfooddelivery.com</span>
             </li>
           </ul>
         </div>
