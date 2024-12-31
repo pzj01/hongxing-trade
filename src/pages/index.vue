@@ -1,23 +1,44 @@
 <script setup>
 import { ref } from 'vue'
 
-const products = ref(['有机蔬菜', '新鲜水果', '全麦面包'])
+const products = ref([
+  {
+    name: '粮油大米',
+    desc: '甄选优质稻谷，粒粒饱满，满足不同口感需求。多种规格，涵盖花生油、菜籽油、橄榄油等，确保纯正健康。',
+    src: '/oil.jpg',
+  },
+  {
+    name: '新鲜果蔬',
+    desc: '多品种水果，营养丰富，甜美可口。直接从基地到餐桌，确保无公害种植。',
+    src: '/Vegetables.jpg',
+  },
+  {
+    name: '新鲜肉禽',
+    desc: '优选优质肉类，保证新鲜度，满足不同菜式的需求。多种规格，涵盖猪肉、牛肉、羊肉等，确保纯正健康。',
+    src: '/meat.jpg',
+  },
+])
+
 const services = ref([
   {
     name: '新鲜配送',
     desc: '当天采购，当天配送，确保食材的新鲜与品质。',
+    src: '/distribution.jpg',
   },
   {
     name: '多品类供应',
     desc: '从主食到生鲜，从调味品到油脂，一应俱全，满足多元化需求。',
+    src: '/Orange.jpg',
   },
   {
     name: '定制化方案',
     desc: '为餐厅、企事业单位提供定制的配送服务，灵活调整配送频率与品类。',
+    src: '/plan.jpg',
   },
   {
     name: '全程冷链',
     desc: '采用冷链运输技术，保障食品品质不受环境影响。',
+    src: '/seafood.jpg',
   },
 ])
 
@@ -42,7 +63,7 @@ const testimonials = ref([
     <main>
       <!-- Hero Section -->
       <section class="relative h-[70vh] flex items-center justify-center text-white">
-        <img src="https://g-b5z0x2cbbqj.vusercontent.net/placeholder.svg?height=1080&width=1920" alt="Fresh ingredients" class="absolute inset-0 h-full w-full object-cover">
+        <img src="/Vegetable.jpg" class="absolute inset-0 h-full w-full object-cover">
         <div class="absolute inset-0 bg-black bg-opacity-50" />
         <div class="z-10 text-center">
           <h1 class="mb-4 text-5xl font-bold">
@@ -64,7 +85,7 @@ const testimonials = ref([
             关于我们
           </h2>
           <p class="mx-auto max-w-2xl text-center">
-            萍乡优达食品配送有限公司是一家专业从事食品配送的企业，专注于为客户提供安全、优质、快捷的配送服务。我们主营各类食品配送，包括大米、鱼类、鸡鸭、食用油等日常所需食材，致力于打造一站式食品供应链服务。无论是餐饮企业、商超还是社区用户，我们都能满足您的需求。
+            萍乡优达配送有限公司是一家专业从事配送的企业，专注于为客户提供安全、优质、快捷的配送服务。我们主营各类食品配送，包括大米、鱼类、鸡鸭、食用油等日常所需食材，致力于打造一站式食品供应链服务。无论是餐饮企业、商超还是社区用户，我们都能满足您的需求。
           </p>
         </div>
       </section>
@@ -78,7 +99,7 @@ const testimonials = ref([
           <div class="grid grid-cols-1 gap-8 md:grid-cols-4">
             <div v-for="service in services" :key="service.name" class="overflow-hidden rounded-lg bg-white shadow-md">
               <div class="p-4">
-                <img src="https://g-b5z0x2cbbqj.vusercontent.net/placeholder.svg?height=200&width=300&text=${encodeURIComponent(product)}" :alt="product" class="mb-4 h-48 w-full rounded-md object-cover">
+                <img :src="service.src" :alt="product" class="mb-4 h-48 w-full rounded-md object-cover">
                 <h3 class="mb-2 text-xl font-semibold">
                   {{ service.name }}
                 </h3>
@@ -98,11 +119,11 @@ const testimonials = ref([
           <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
             <div v-for="product in products" :key="product" class="overflow-hidden rounded-lg bg-white shadow-md">
               <div class="p-4">
-                <img src="https://g-b5z0x2cbbqj.vusercontent.net/placeholder.svg?height=200&width=300&text=${encodeURIComponent(product)}" :alt="product" class="mb-4 h-48 w-full rounded-md object-cover">
+                <img :src="product.src" :alt="product" class="mb-4 h-48 w-full rounded-md object-cover">
                 <h3 class="mb-2 text-xl font-semibold">
-                  {{ product }}
+                  {{ product.name }}
                 </h3>
-                <p>优质{{ product }}，为您的健康保驾护航。</p>
+                <p>优质{{ product.desc }}，为您的健康保驾护航。</p>
               </div>
             </div>
           </div>

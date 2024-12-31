@@ -3,7 +3,7 @@ const keyword = ref('')
 </script>
 
 <template>
-  <header class="bg-white shadow-md">
+  <header class="main-header bg-white shadow-md">
     <div class="mx-auto flex items-center justify-between px-4 py-4 container">
       <div class="flex items-center">
         <span class="text-xl text-gray-800 font-bold">萍乡优达配送有限公司</span>

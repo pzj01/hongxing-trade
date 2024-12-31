@@ -31,6 +31,15 @@ app.use(PrimeVue, {
   },
 })
 
+router.beforeEach((_to, _from, next) => {
+  if ('startViewTransition' in document) {
+    document.startViewTransition(next)
+  }
+  else {
+    next()
+  }
+})
+
 app.use(router)
 app.use(ToastService)
 app.use(ConfirmationService)
