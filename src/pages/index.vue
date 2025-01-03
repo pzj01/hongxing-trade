@@ -99,7 +99,7 @@ const testimonials = ref([
           <div class="grid grid-cols-1 gap-8 md:grid-cols-4">
             <div v-for="service in services" :key="service.name" class="overflow-hidden rounded-lg bg-white shadow-md">
               <div class="p-4">
-                <img :src="service.src" :alt="product" class="mb-4 h-48 w-full rounded-md object-cover">
+                <img :src="service.src" :alt="service.name" class="mb-4 h-48 w-full rounded-md object-cover">
                 <h3 class="mb-2 text-xl font-semibold">
                   {{ service.name }}
                 </h3>

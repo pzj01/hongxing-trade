@@ -27,6 +27,8 @@ declare module 'vue' {
     MainLayout: typeof import('./src/components/MainLayout.vue')['default']
     Menu: typeof import('primevue/menu')['default']
     Password: typeof import('primevue/password')['default']
+    Product: typeof import('./src/components/Product.vue')['default']
+    ProductItem: typeof import('./src/components/ProductItem.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Select: typeof import('primevue/select')['default']

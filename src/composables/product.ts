@@ -1,6 +1,6 @@
 import type { Product } from '~/types'
 import { defineStore } from 'pinia'
-import { useToast } from 'primevue/usetoast'
+import { useManagement } from './useManagement'
 
 const DEFAULT_PRODUCTS: Product[] = [
   {
@@ -57,58 +57,15 @@ const DEFAULT_PRODUCTS: Product[] = [
 ]
 
 export const useProductStore = defineStore('product', () => {
-  const products = reactive<Product[]>(DEFAULT_PRODUCTS)
-  const toast = useToast()
-
-  function addProduct(product: Omit<Product, 'id'>) {
-    products.push({
-      ...product,
-      id: Date.now(),
-    })
-
-    toast.add({
-      severity: 'success',
-      summary: '添加成功',
-      detail: `添加 ${product.name} 成功`,
-      life: 3000,
-    })
-  }
-
-  function updateProduct(product: Product) {
-    const p = products.find(p => p.id === product.id)
-    if (p) {
-      Object.assign(p, product)
-      toast.add({
-        severity: 'success',
-        summary: '更新成功',
-        detail: `更新 ${product.name} 成功`,
-        life: 3000,
-      })
-    }
-  }
-
-  function deleteProduct(ids: Product['id'][]) {
-    if (ids.length) {
-      const removed = ids.map((id) => {
-        const index = products.findIndex(p => p.id === id)
-        if (index !== -1) {
-          return products.splice(index, 1)[0]
-        }
-        return null
-      }).filter(Boolean)
-      toast.add({
-        severity: 'success',
-        summary: '删除成功',
-        detail: `删除 ${removed.map(p => p?.name).join()} 成功`,
-        life: 3000,
-      })
-    }
-  }
+  const { items, addItem, updateItem, deleteItem } = useManagement<Product>({
+    items: DEFAULT_PRODUCTS,
+    detailKey: 'name',
+  })
 
   return {
-    products,
-    addProduct,
-    updateProduct,
-    deleteProduct,
+    products: items,
+    addProduct: addItem,
+    updateProduct: updateItem,
+    deleteProduct: deleteItem,
   }
 })

@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 
 const companyInfo = ref({
-  name: '萍乡优达食品配送有限公司',
+  name: '萍乡优达配送有限公司',
   foundedYear: 2023,
   mission: '为客户提供安全、优质、快捷的食品配送服务，让健康食材快速到家。',
   vision: '成为江西省领先的食品配送服务提供商，为更多的家庭和企业带来便利与健康。',
@@ -25,6 +25,30 @@ const values = ref([
   { title: '客户为先', desc: '以客户需求为导向，不断优化服务体验。' },
   { title: '创新驱动', desc: '拥抱新技术，持续改进配送效率与服务质量。' },
   { title: '诚信经营', desc: '坚持透明定价，诚实守信，赢得客户信赖。' },
+])
+
+// 证书
+const licenses = ref([
+  {
+    name: '环境管理证书',
+    src: '/萍乡市优达配送-环境管理.pdf',
+  },
+  {
+    name: '生鲜农产品配送证书',
+    src: '/萍乡市优达配送-生鲜农产品配送.pdf',
+  },
+  {
+    name: '食品可追溯证书',
+    src: '/萍乡市优达配送-食品可追溯.pdf',
+  },
+  {
+    name: '职业健康安全管理证书',
+    src: '/萍乡市优达配送-职业健康安全管理.pdf',
+  },
+  {
+    name: '食品安全管理证书',
+    src: '/食品安全管理.pdf',
+  },
 ])
 </script>
 
@@ -142,6 +166,18 @@ const values = ref([
             </div>
           </div>
         </div>
+      </section>
+
+      <!-- 认证证书 -->
+      <section class="mx-auto max-w-7xl px-4 py-12 lg:px-8 sm:px-6">
+        <h2 class="mb-6 text-2xl text-gray-900 font-semibold">
+          认证证书
+        </h2>
+        <ul list-circle-inside>
+          <li v-for="license in licenses" :key="license.name">
+            <a :href="license.src" target="_blank" class="text-blue-600 hover:underline">{{ license.name }}</a>
+          </li>
+        </ul>
       </section>
     </main>
   </MainLayout>

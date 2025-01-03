@@ -1,3 +1,5 @@
+import type { Item } from './composables/useManagement'
+
 export interface User {
   id: number
   role: Role
@@ -14,8 +16,7 @@ export enum Role {
   SUPER_ADMIN,
 }
 
-export interface Product {
-  id: number
+export interface Product extends Item {
   name: string
   date: Date
   document_number: string
@@ -30,4 +31,12 @@ export interface Product {
   quantity: number
   unit: string
   responsible_person: string
+}
+
+export enum Category {
+  FRUITS = '新鲜蔬果',
+  MEAT = '肉禽蛋品',
+  SEAFOOD = '海鲜水产',
+  OIL = '稂油调味',
+  MILK = '乳制品',
 }

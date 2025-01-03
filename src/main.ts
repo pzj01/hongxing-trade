@@ -25,7 +25,7 @@ app.use(PrimeVue, {
     preset: Preset,
     options: {
       prefix: 'p',
-      darkModeSelector: 'system',
+      darkModeSelector: false,
       cssLayer: false,
     },
   },
@@ -33,7 +33,7 @@ app.use(PrimeVue, {
 
 router.beforeEach((_to, _from, next) => {
   if ('startViewTransition' in document) {
-    document.startViewTransition(next)
+    document.startViewTransition().ready.then(next)
   }
   else {
     next()

@@ -1,19 +1,38 @@
 <script setup lang="ts">
-const keyword = ref('')
+import { format } from 'date-fns'
+import { zhCN } from 'date-fns/locale'
+
+const keywordValue = inject<string>('keyword', '')
+
+const router = useRouter()
+const keyword = ref(keywordValue || '')
+
+function onSearch() {
+  const value = keyword.value.trim()
+  if (value) {
+    router.push(`/search?keyword=${value}`)
+  }
+}
 </script>
 
 <template>
+  <div bg-green-600 px-32 py-1 text-white>
+    <span>欢迎来到萍乡优达配送官网！今天是：{{ format(new Date(), 'yyyy年MM月dd日 EEEE', { locale: zhCN }) }}</span>
+  </div>
   <header class="main-header bg-white shadow-md">
     <div class="mx-auto flex items-center justify-between px-4 py-4 container">
       <div class="flex items-center">
-        <span class="text-xl text-gray-800 font-bold">萍乡优达配送有限公司</span>
+        <a class="text-xl text-gray-800 font-bold" href="/">萍乡优达配送有限公司</a>
       </div>
       <nav>
         <ul class="flex items-center space-x-6">
           <!-- search -->
           <IconField>
             <InputIcon class="i-carbon-search" />
-            <InputText v-model="keyword" size="small" placeholder="搜索产品" />
+            <InputText v-model="keyword" size="small" placeholder="搜索产品..." @keydown.enter="onSearch" />
+            <Button ml-2 size="small" @click="onSearch">
+              搜索
+            </Button>
           </IconField>
           <li>
             <RouterLink to="/" active-class="text-gray-900" class="text-gray-600 hover:text-gray-900">
