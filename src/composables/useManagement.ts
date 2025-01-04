@@ -8,6 +8,7 @@ export interface Item {
 export interface useManagementOptions<T extends Item> {
   items?: T[]
   detailKey: keyof T
+  value?: (item: T) => string
 }
 
 export function useManagement<T extends Item>(options: useManagementOptions<T>) {
@@ -21,13 +22,13 @@ export function useManagement<T extends Item>(options: useManagementOptions<T>) 
   function addItem(item: T) {
     items.push({
       ...item,
-      id: Date.now(),
+      id: `0x${Date.now()}`,
     } as any)
 
     toast.add({
       severity: 'success',
       summary: '添加成功',
-      detail: `添加 ${item[detailKey]} 成功`,
+      detail: `添加 ${options?.value?.(item) || item[detailKey]} 成功`,
       life: 3000,
     })
   }
@@ -36,10 +37,11 @@ export function useManagement<T extends Item>(options: useManagementOptions<T>) 
     const p = items.find(p => p.id === item.id)
     if (p) {
       Object.assign(p, item)
+
       toast.add({
         severity: 'success',
         summary: '更新成功',
-        detail: `更新 ${item[detailKey]} 成功`,
+        detail: `更新 ${options?.value?.(item) || item[detailKey]} 成功`,
         life: 3000,
       })
     }
@@ -58,7 +60,7 @@ export function useManagement<T extends Item>(options: useManagementOptions<T>) 
       toast.add({
         severity: 'success',
         summary: '删除成功',
-        detail: `删除 ${removed.map(p => p[detailKey]).join()} 成功`,
+        detail: `删除 ${removed.map(p => options?.value?.(p) || p[detailKey]).join()} 成功`,
         life: 3000,
       })
     }

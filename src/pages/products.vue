@@ -7,9 +7,10 @@ import { Category } from '~/types'
 const categories = ref([
   { id: Category.FRUITS, icon: '🥬' },
   { id: Category.MEAT, icon: '🍗' },
-  { id: Category.SEAFOOD, icon: '🐟' },
+  // { id: Category.SEAFOOD, icon: '🐟' },
   { id: Category.OIL, icon: '🌾' },
-  { id: Category.MILK, icon: '🥛' },
+  // { id: Category.MILK, icon: '🥛' },
+  { id: Category.OTHER, icon: '🌱' },
 ])
 
 const products = reactive<Product[]>(_products)

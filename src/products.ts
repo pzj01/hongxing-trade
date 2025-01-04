@@ -7,10 +7,19 @@ export interface Product {
   price: number
   unit: string
   image: string
-  testReport: string
+  testReport?: string
 }
 
 export const products: Product[] = [
+  {
+    id: 27,
+    name: '可靠的大米',
+    category: Category.OIL,
+    price: 99.9,
+    unit: '袋',
+    image: '/reports/可靠的大米/可靠的大米.jpeg',
+    testReport: '/reports/可靠的大米/大米出厂检测报告.jpg',
+  },
   {
     id: 1,
     name: '福禄花鲜香压榨菜籽油5L',
@@ -244,5 +253,77 @@ export const products: Product[] = [
     unit: '桶',
     image: '/reports/西王玉米油5L（尊享、优选）/西王玉米油5L（尊享、优选）.avif',
     testReport: '/reports/西王玉米油5L（尊享、优选）/产品检测报告.pdf',
+  },
+  {
+    id: 28,
+    name: '统一桶装方便面',
+    category: Category.OTHER,
+    price: 5,
+    unit: '桶',
+    image: '/reports/统一桶装方便面/统一桶装方便面.jpg',
+    testReport: '/reports/统一桶装方便面/统一桶装方便面.pdf',
+  },
+  {
+    id: 29,
+    name: '面条',
+    category: Category.OTHER,
+    price: 6,
+    unit: '袋',
+    image: '/reports/面条/面条.avif',
+    testReport: '/reports/面条/面条.pdf',
+  },
+  {
+    id: 30,
+    name: '猪肉',
+    category: Category.MEAT,
+    price: 10,
+    unit: '斤',
+    image: '/reports/可靠的猪产品来源/可靠的猪产品来源.webp',
+    testReport: '/reports/可靠的猪产品来源/可靠的猪产品来源.jpg',
+  },
+  {
+    id: 31,
+    name: '鸡肉',
+    category: Category.MEAT,
+    price: 10,
+    unit: '斤',
+    image: '/reports/肉鸡/肉鸡.jpg',
+    testReport: '/reports/肉鸡/肉鸡.pdf',
+  },
+  {
+    id: 32,
+    name: '肉鸭',
+    category: Category.MEAT,
+    price: 10,
+    unit: '斤',
+    image: '/reports/肉鸭/肉鸭.jpg',
+    testReport: '/reports/肉鸭/肉鸭.pdf',
+  },
+  {
+    id: 33,
+    name: '鲈鱼',
+    category: Category.MEAT,
+    price: 10,
+    unit: '斤',
+    image: '/reports/鲈鱼/鲈鱼.jpg',
+    testReport: '/reports/鲈鱼/鲈鱼.pdf',
+  },
+  {
+    id: 34,
+    name: '基围虾',
+    category: Category.MEAT,
+    price: 10,
+    unit: '斤',
+    image: '/reports/基围虾/基围虾.jpg',
+    testReport: '/reports/基围虾/基围虾.pdf',
+  },
+  {
+    id: 35,
+    name: '豆角',
+    category: Category.FRUITS,
+    price: 3,
+    unit: '斤',
+    image: '/reports/豆角/豆角.jpg',
+    testReport: '/萍乡市优达配送-生鲜农产品配送.pdf',
   },
 ]

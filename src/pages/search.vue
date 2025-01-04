@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { products } from '~/products'
 
-const { query: { keyword } } = useRoute()
+const route = useRoute()
+const keyword = route.query.keyword
 
-const filteredProducts = products.filter(product => product.name.includes(keyword as string))
+const filteredProducts = computed(() => products.filter(product => product.name.includes(route.query.keyword as string)))
 
 provide('keyword', keyword)
 </script>

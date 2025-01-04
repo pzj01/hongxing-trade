@@ -217,7 +217,7 @@ function clickDelete() {
       </FloatLabel>
       <div>
         <label for="date" style="color: var(--p-form-field-color)" class="mb-2 block font-bold">日期</label>
-        <DatePicker v-model="form.date" fluid placeholder="日期" />
+        <DatePicker v-model="form.date" fluid placeholder="日期" date-format="yy/mm/dd" />
       </div>
       <FloatLabel>
         <InputText id="raw_materials" v-model="form.raw_materials" fluid />
@@ -237,14 +237,14 @@ function clickDelete() {
       </FloatLabel>
       <div>
         <label for="quantity" style="color: var(--p-form-field-color)" class="mb-2 block font-bold">生产日期</label>
-        <DatePicker v-model="form.production_date" fluid placeholder="生产日期" />
+        <DatePicker v-model="form.production_date" fluid placeholder="生产日期" date-format="yy/mm/dd" />
       </div>
       <FloatLabel>
         <InputText id="shelf_life" v-model="form.shelf_life" fluid />
         <label for="shelf_life">保质期</label>
       </FloatLabel>
-      <DatePicker v-model="form.entry_time" fluid placeholder="入库日期" />
-      <DatePicker v-model="form.exit_time" fluid placeholder="出库日期" />
+      <DatePicker v-model="form.entry_time" fluid placeholder="入库日期" date-format="yy/mm/dd" />
+      <DatePicker v-model="form.exit_time" fluid placeholder="出库日期" date-format="yy/mm/dd" />
       <FloatLabel>
         <InputText id="unit" v-model="form.unit" fluid />
         <label for="unit">计量单位</label>

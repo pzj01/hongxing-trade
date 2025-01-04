@@ -29,5 +29,6 @@ declare module 'vue-router/auto-routes' {
     '/sys': RouteRecordInfo<'/sys', '/sys', Record<never, never>, Record<never, never>>,
     '/sys/': RouteRecordInfo<'/sys/', '/sys', Record<never, never>, Record<never, never>>,
     '/sys/product': RouteRecordInfo<'/sys/product', '/sys/product', Record<never, never>, Record<never, never>>,
+    '/sys/purchase': RouteRecordInfo<'/sys/purchase', '/sys/purchase', Record<never, never>, Record<never, never>>,
   }
 }

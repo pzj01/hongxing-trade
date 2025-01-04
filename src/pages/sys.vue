@@ -1,5 +1,10 @@
 <script setup lang="ts">
+import { useConfirm } from 'primevue/useconfirm'
+
 const router = useRouter()
+const { user, logout } = useUserStore()
+const confirm = useConfirm()
+
 const items = ref([
   {
     label: '首页',
@@ -9,22 +14,42 @@ const items = ref([
     },
   },
   {
+    label: '采购管理',
+    icon: 'i-carbon-purchase',
+    command() {
+      router.push('/sys/purchase')
+    },
+  },
+  {
     label: '产品管理',
     icon: 'i-carbon-cloud-service-management',
     command() {
       router.push('/sys/product')
     },
   },
-])
-
-const { user, logout } = useUserStore()
-const operator = useTemplateRef('op')
-
-const popoverItems = reactive([
   {
     label: '退出登录',
     icon: 'i-carbon-logout',
-    command: () => logout(),
+    command() {
+      confirm.require({
+        message: '确定要退出登录吗?',
+        header: '退出登录',
+        icon: 'i-carbon-logout',
+        acceptProps: {
+          label: '退出',
+          severity: 'danger',
+        },
+        rejectProps: {
+          label: '取消',
+          severity: 'secondary',
+          outlined: true,
+        },
+        accept: () => {
+          logout()
+          router.push('/login')
+        },
+      })
+    },
   },
 ])
 </script>
@@ -44,8 +69,7 @@ const popoverItems = reactive([
       <nav text="2xl" border-b p-2>
         <div flex="~ items-center gap-x-2 justify-end">
           <span text-base>欢迎你，{{ user?.username }}</span>
-          <Avatar cursor-pointer :label="user?.username.at(0) || 'P'" class="mr-2" size="large" shape="circle" @click="operator?.toggle($event)" />
-          <Menu ref="op" :model="popoverItems" popup />
+          <Avatar :label="user?.username.at(0) || 'P'" class="mr-2" size="large" shape="circle" />
         </div>
       </nav>
       <div overflow-auto p-4 style="background-color: var(--p-content-background);height: calc(100vh - 64px);">

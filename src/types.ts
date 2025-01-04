@@ -39,4 +39,5 @@ export enum Category {
   SEAFOOD = '海鲜水产',
   OIL = '稂油调味',
   MILK = '乳制品',
+  OTHER = '其他干货及杂物',
 }

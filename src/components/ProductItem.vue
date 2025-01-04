@@ -14,7 +14,7 @@ function toTestReport() {
   <div
     class="overflow-hidden rounded-lg bg-white pt-4 shadow"
   >
-    <img :src="product.image" :alt="product.name" class="w-full object-cover">
+    <img :src="product.image" :alt="product.name" class="aspect-square w-full">
     <div class="p-4">
       <h3 class="w-70 overflow-hidden text-ellipsis text-nowrap text-lg text-gray-900 font-medium">
         {{ product.name }}
