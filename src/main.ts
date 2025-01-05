@@ -9,8 +9,8 @@ import Preset from '../preset'
 import App from './App.vue'
 
 import '@unocss/reset/tailwind.css'
-import './styles/main.css'
 import 'uno.css'
+import './styles/main.css'
 
 const app = createApp(App)
 const router = createRouter({

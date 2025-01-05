@@ -10,8 +10,8 @@ const form = reactive({
 })
 
 const roles = ref([
-  { label: '管理员', value: Role.ADMIN },
-  { label: '超级管理员', value: Role.SUPER_ADMIN },
+  { label: '采购员', value: Role.PURCHASER },
+  { label: '系统管理员', value: Role.ADMIN },
 ])
 const role = ref(Role.VIEWER)
 
@@ -69,7 +69,7 @@ function handleSubmit() {
             登录
           </Button>
           <Button fluid severity="secondary" @click="$router.push('/')">
-            返回首页
+            返回官网首页
           </Button>
         </form>
       </div>

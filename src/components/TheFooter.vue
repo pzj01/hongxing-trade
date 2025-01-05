@@ -16,10 +16,10 @@
             快速链接
           </h3>
           <ul class="text-sm">
-            <li><a href="#" class="hover:text-gray-300">首页</a></li>
-            <li><a href="#" class="hover:text-gray-300">关于我们</a></li>
-            <li><a href="#" class="hover:text-gray-300">产品</a></li>
-            <li><a href="#" class="hover:text-gray-300">联系我们</a></li>
+            <li><a href="/" class="hover:text-gray-300">首页</a></li>
+            <li><a href="/about" class="hover:text-gray-300">关于我们</a></li>
+            <li><a href="/products" class="hover:text-gray-300">产品</a></li>
+            <li><a href="/contact" class="hover:text-gray-300">联系我们</a></li>
           </ul>
         </div>
         <div>

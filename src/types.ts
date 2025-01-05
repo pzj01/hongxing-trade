@@ -10,10 +10,10 @@ export interface User {
 export enum Role {
   // 查询人
   VIEWER,
-  // 管理员
+  // 采购员
+  PURCHASER,
+  // 系统管理员
   ADMIN,
-  // 超级管理员
-  SUPER_ADMIN,
 }
 
 export interface Product extends Item {

@@ -1,11 +1,13 @@
 <script setup lang="ts">
+import type { MenuItem } from 'primevue/menuitem'
 import { useConfirm } from 'primevue/useconfirm'
+import { Role } from '~/types'
 
 const router = useRouter()
 const { user, logout } = useUserStore()
 const confirm = useConfirm()
 
-const items = ref([
+const items = computed(() => [
   {
     label: '首页',
     icon: 'i-carbon-home',
@@ -20,7 +22,7 @@ const items = ref([
       router.push('/sys/purchase')
     },
   },
-  {
+  user?.role !== Role.PURCHASER && {
     label: '产品管理',
     icon: 'i-carbon-cloud-service-management',
     command() {
@@ -51,7 +53,7 @@ const items = ref([
       })
     },
   },
-])
+].filter(Boolean) as MenuItem[])
 </script>
 
 <template>
@@ -65,14 +67,14 @@ const items = ref([
         </h1>
       </template>
     </Menu>
-    <div flex-1>
+    <div style="width: calc(100% - 200px);">
       <nav text="2xl" border-b p-2>
-        <div flex="~ items-center gap-x-2 justify-end">
-          <span text-base>欢迎你，{{ user?.username }}</span>
-          <Avatar :label="user?.username.at(0) || 'P'" class="mr-2" size="large" shape="circle" />
+        <div flex="~ items-center gap-x-2 justify-between">
+          <span text-base font-bold>欢迎你，{{ user?.username }}</span>
+          <Avatar :label="user?.username.at(0) || 'P'" size="large" shape="circle" />
         </div>
       </nav>
-      <div overflow-auto p-4 style="background-color: var(--p-content-background);height: calc(100vh - 64px);">
+      <div overflow-auto p-4 style="background-color: var(--p-content-background);height: calc(100vh - 65px);">
         <RouterView />
       </div>
     </div>

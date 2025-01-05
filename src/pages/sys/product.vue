@@ -135,7 +135,7 @@ function clickDelete() {
 
 <template>
   <div>
-    <DataTable v-model:selection="selectedProduct" v-model:filters="filters" style="width: calc(100vw - 232px)" scroll-height="600px" data-key="id" filter-display="row" :value="products" scrollable striped-rows paginator :rows="5" :rows-per-page-options="[5, 10, 20, 50]">
+    <DataTable v-model:selection="selectedProduct" v-model:filters="filters" style="width: calc(100vw - 232px)" scroll-height="600px" data-key="id" filter-display="menu" :value="products" scrollable striped-rows paginator :rows="5" :rows-per-page-options="[5, 10, 20, 50]">
       <template #header>
         <div v-if="user?.role !== Role.VIEWER" class="flex gap-x-2">
           <Button label="添加产品" @click="clickAdd">
@@ -167,7 +167,7 @@ function clickDelete() {
       </template>
       <Column selection-mode="multiple" header-style="width: 3rem" />
       <Column field="document_number" header="仓储单据编号" style="min-width: 8em;" />
-      <Column field="name" header="名称" style="min-width: 12em;">
+      <Column field="name" header="名称" style="min-width: 10em;">
         <template #body="{ data }">
           {{ data.name }}
         </template>

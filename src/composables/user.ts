@@ -2,15 +2,31 @@ import { defineStore } from 'pinia'
 import { useToast } from 'primevue/usetoast'
 import { Role, type User } from '~/types'
 
-const DEFAULT_USER = {
-  id: Date.now(),
+const DEFAULT_USER: User = {
+  id: 0,
   username: '查询人',
-  password: '123456',
+  password: '',
   role: Role.VIEWER,
+}
+
+const DEFAULT_PURCHASER: User = {
+  id: 1,
+  username: 'purchaser',
+  password: '123456',
+  role: Role.PURCHASER,
+}
+
+const DEFAULT_ADMIN: User = {
+  id: 2,
+  username: 'admin',
+  password: '123456',
+  role: Role.ADMIN,
 }
 
 const DEFAULT_USERS: User[] = [
   DEFAULT_USER,
+  DEFAULT_PURCHASER,
+  DEFAULT_ADMIN,
 ]
 
 export const useUserStore = defineStore('user', () => {

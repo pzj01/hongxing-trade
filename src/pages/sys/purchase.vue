@@ -124,7 +124,7 @@ function clickDelete() {
 
 <template>
   <div>
-    <DataTable v-model:selection="selectedPurchase" style="width: calc(100vw - 232px)" scroll-height="600px" data-key="id" filter-display="row" :value="purchases" scrollable striped-rows paginator :rows="5" :rows-per-page-options="[5, 10, 20, 50]">
+    <DataTable v-model:selection="selectedPurchase" style="width: calc(100vw - 232px)" scroll-height="600px" data-key="id" :value="purchases" scrollable striped-rows paginator :rows="5" :rows-per-page-options="[5, 10, 20, 50]">
       <template #header>
         <div v-if="user?.role !== Role.VIEWER" class="flex gap-x-2">
           <Button label="添加采购" @click="clickAdd">
@@ -156,7 +156,7 @@ function clickDelete() {
       </template>
       <Column selection-mode="multiple" header-style="width: 3rem" />
       <Column field="id" header="采购编号" style="min-width: 8em;" />
-      <Column field="supplier_id" header="供应商" style="min-width: 12em;">
+      <Column field="supplier_id" header="供应商" style="min-width: 10em;">
         <template #body="{ data, field }">
           {{ suppliersMap[data[field]].name }}
         </template>
