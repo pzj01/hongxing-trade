@@ -68,7 +68,8 @@ function resetForm() {
 }
 
 function handleSubmit() {
-  if (Object.values({ ...form, id: 1 }).some(v => !v)) {
+  // 排除id和备注
+  if (Object.values({ ...form, id: 1, remarks: '666' }).some(v => !v)) {
     toast.add({
       severity: 'warn',
       summary: '警告',
