@@ -128,6 +128,7 @@ function clickDelete() {
     },
     accept: () => {
       deleteProduct(ids)
+      selectedProduct.value = []
     },
   })
 }

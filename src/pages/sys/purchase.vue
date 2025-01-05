@@ -117,6 +117,7 @@ function clickDelete() {
     },
     accept: () => {
       deletePurchase(ids)
+      selectedPurchase.value = []
     },
   })
 }
