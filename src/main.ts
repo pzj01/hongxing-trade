@@ -33,7 +33,7 @@ app.use(PrimeVue, {
 
 router.beforeEach((_to, _from, next) => {
   if ('startViewTransition' in document) {
-    document.startViewTransition().ready.then(next)
+    document.startViewTransition(next)
   }
   else {
     next()
