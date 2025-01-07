@@ -3,17 +3,21 @@ import { Category } from './types'
 export interface Product {
   id: number
   name: string
+  desc?: string
   category: Category
   price: number
   unit: string
   image: string
+  material_ids?: number[]
   testReport?: string
 }
 
 export const products: Product[] = [
   {
     id: 27,
-    name: '可靠的大米',
+    material_ids: [1, 2],
+    name: '大米',
+    desc: '九寨雪出品的可靠大米，是自然馈赠与匠心工艺的完美结合。产自九寨高山净土，这片土地以其纯净的水源、清新的空气和富饶的土壤闻名，赋予大米天然的芳香与独特的口感。',
     category: Category.OIL,
     price: 99.9,
     unit: '袋',
@@ -23,6 +27,7 @@ export const products: Product[] = [
   {
     id: 1,
     name: '福禄花鲜香压榨菜籽油5L',
+    desc: '西王食用油，源自山东西王食品有限公司的匠心之作，专为追求健康与美味的家庭打造。精选优质原料，采用先进的物理压榨工艺，最大程度保留了油品的天然营养与纯正风味。',
     category: Category.OIL,
     price: 159.8,
     unit: '桶',
@@ -32,6 +37,7 @@ export const products: Product[] = [
   {
     id: 2,
     name: '福禄花鲜香压榨玉米油5L',
+    desc: '西王食用油，源自山东西王食品有限公司的匠心之作，专为追求健康与美味的家庭打造。精选优质原料，采用先进的物理压榨工艺，最大程度保留了油品的天然营养与纯正风味。',
     category: Category.OIL,
     price: 112,
     unit: '桶',
@@ -41,6 +47,7 @@ export const products: Product[] = [
   {
     id: 3,
     name: '福禄花压榨葵花籽油10L',
+    desc: '西王食用油，源自山东西王食品有限公司的匠心之作，专为追求健康与美味的家庭打造。精选优质原料，采用先进的物理压榨工艺，最大程度保留了油品的天然营养与纯正风味。',
     category: Category.OIL,
     price: 215,
     unit: '桶',
@@ -50,6 +57,7 @@ export const products: Product[] = [
   {
     id: 4,
     name: '福禄花压榨花生油10L',
+    desc: '西王食用油，源自山东西王食品有限公司的匠心之作，专为追求健康与美味的家庭打造。精选优质原料，采用先进的物理压榨工艺，最大程度保留了油品的天然营养与纯正风味。',
     category: Category.OIL,
     price: 180,
     unit: '桶',
@@ -59,6 +67,7 @@ export const products: Product[] = [
   {
     id: 5,
     name: '玲珑心压榨玉米油5L',
+    desc: '西王食用油，源自山东西王食品有限公司的匠心之作，专为追求健康与美味的家庭打造。精选优质原料，采用先进的物理压榨工艺，最大程度保留了油品的天然营养与纯正风味。',
     category: Category.OIL,
     price: 120,
     unit: '桶',
@@ -68,6 +77,7 @@ export const products: Product[] = [
   {
     id: 6,
     name: '福禄花玉米油5L',
+    desc: '西王食用油，源自山东西王食品有限公司的匠心之作，专为追求健康与美味的家庭打造。精选优质原料，采用先进的物理压榨工艺，最大程度保留了油品的天然营养与纯正风味。',
     category: Category.OIL,
     price: 120,
     unit: '桶',
@@ -77,6 +87,7 @@ export const products: Product[] = [
   {
     id: 7,
     name: '玲珑心玉米油5L',
+    desc: '西王食用油，源自山东西王食品有限公司的匠心之作，专为追求健康与美味的家庭打造。精选优质原料，采用先进的物理压榨工艺，最大程度保留了油品的天然营养与纯正风味。',
     category: Category.OIL,
     price: 120,
     unit: '桶',
@@ -86,6 +97,7 @@ export const products: Product[] = [
   {
     id: 8,
     name: '西王纯香压榨菜籽油5L（中百、特渠）',
+    desc: '西王食用油，源自山东西王食品有限公司的匠心之作，专为追求健康与美味的家庭打造。精选优质原料，采用先进的物理压榨工艺，最大程度保留了油品的天然营养与纯正风味。',
     category: Category.OIL,
     price: 130,
     unit: '桶',
@@ -95,6 +107,7 @@ export const products: Product[] = [
   {
     id: 9,
     name: '西王低芥酸浓香菜籽油5L',
+    desc: '西王食用油，源自山东西王食品有限公司的匠心之作，专为追求健康与美味的家庭打造。精选优质原料，采用先进的物理压榨工艺，最大程度保留了油品的天然营养与纯正风味。',
     category: Category.OIL,
     price: 109,
     unit: '桶',
@@ -104,6 +117,7 @@ export const products: Product[] = [
   {
     id: 10,
     name: '西王好鲜生玉米胚芽油5L',
+    desc: '西王食用油，源自山东西王食品有限公司的匠心之作，专为追求健康与美味的家庭打造。精选优质原料，采用先进的物理压榨工艺，最大程度保留了油品的天然营养与纯正风味。',
     category: Category.OIL,
     price: 110,
     unit: '桶',
@@ -113,6 +127,7 @@ export const products: Product[] = [
   {
     id: 11,
     name: '西王经典玉米胚芽油5L',
+    desc: '西王食用油，源自山东西王食品有限公司的匠心之作，专为追求健康与美味的家庭打造。精选优质原料，采用先进的物理压榨工艺，最大程度保留了油品的天然营养与纯正风味。',
     category: Category.OIL,
     price: 189.9,
     unit: '桶',
@@ -122,6 +137,7 @@ export const products: Product[] = [
   {
     id: 12,
     name: '西王葵花籽油5L（优选）',
+    desc: '西王食用油，源自山东西王食品有限公司的匠心之作，专为追求健康与美味的家庭打造。精选优质原料，采用先进的物理压榨工艺，最大程度保留了油品的天然营养与纯正风味。',
     category: Category.OIL,
     price: 108.69,
     unit: '桶',
@@ -131,6 +147,7 @@ export const products: Product[] = [
   {
     id: 13,
     name: '西王食用植物调和油5L（玉橄）',
+    desc: '西王食用油，源自山东西王食品有限公司的匠心之作，专为追求健康与美味的家庭打造。精选优质原料，采用先进的物理压榨工艺，最大程度保留了油品的天然营养与纯正风味。',
     category: Category.OIL,
     price: 148,
     unit: '桶',
@@ -140,6 +157,7 @@ export const products: Product[] = [
   {
     id: 14,
     name: '西王小榨原香菜籽油5L',
+    desc: '西王食用油，源自山东西王食品有限公司的匠心之作，专为追求健康与美味的家庭打造。精选优质原料，采用先进的物理压榨工艺，最大程度保留了油品的天然营养与纯正风味。',
     category: Category.OIL,
     price: 116.6,
     unit: '桶',
@@ -149,6 +167,7 @@ export const products: Product[] = [
   {
     id: 15,
     name: '西王小榨甄香菜籽油5L',
+    desc: '西王食用油，源自山东西王食品有限公司的匠心之作，专为追求健康与美味的家庭打造。精选优质原料，采用先进的物理压榨工艺，最大程度保留了油品的天然营养与纯正风味。',
     category: Category.OIL,
     price: 99.9,
     unit: '桶',
@@ -159,6 +178,7 @@ export const products: Product[] = [
     id: 16,
     name: '西王压榨菜籽油5L',
     category: Category.OIL,
+    desc: '西王食用油，源自山东西王食品有限公司的匠心之作，专为追求健康与美味的家庭打造。精选优质原料，采用先进的物理压榨工艺，最大程度保留了油品的天然营养与纯正风味。',
     price: 99.9,
     unit: '桶',
     image: '/reports/西王压榨菜籽油5L/西王压榨菜籽油5L.jpeg',
@@ -167,6 +187,7 @@ export const products: Product[] = [
   {
     id: 17,
     name: '西王压榨花生油5L',
+    desc: '西王食用油，源自山东西王食品有限公司的匠心之作，专为追求健康与美味的家庭打造。精选优质原料，采用先进的物理压榨工艺，最大程度保留了油品的天然营养与纯正风味。',
     category: Category.OIL,
     price: 99.9,
     unit: '桶',
@@ -175,6 +196,7 @@ export const products: Product[] = [
   },
   {
     id: 18,
+    desc: '西王食用油，源自山东西王食品有限公司的匠心之作，专为追求健康与美味的家庭打造。精选优质原料，采用先进的物理压榨工艺，最大程度保留了油品的天然营养与纯正风味。',
     name: '西王压榨葵花籽油5.27L（惠 悦味上品）',
     category: Category.OIL,
     price: 67.9,
@@ -186,6 +208,7 @@ export const products: Product[] = [
     id: 19,
     name: '西王压榨葵花籽油5L',
     category: Category.OIL,
+    desc: '西王食用油，源自山东西王食品有限公司的匠心之作，专为追求健康与美味的家庭打造。精选优质原料，采用先进的物理压榨工艺，最大程度保留了油品的天然营养与纯正风味。',
     price: 99.9,
     unit: '桶',
     image: '/reports/西王压榨葵花籽油5L/西王压榨葵花籽油5L.jpg',
@@ -194,6 +217,7 @@ export const products: Product[] = [
   {
     id: 20,
     name: '西王压榨玉米油5L',
+    desc: '西王食用油，源自山东西王食品有限公司的匠心之作，专为追求健康与美味的家庭打造。精选优质原料，采用先进的物理压榨工艺，最大程度保留了油品的天然营养与纯正风味。',
     category: Category.OIL,
     price: 149,
     unit: '桶',
@@ -202,6 +226,7 @@ export const products: Product[] = [
   },
   {
     id: 21,
+    desc: '西王食用油，源自山东西王食品有限公司的匠心之作，专为追求健康与美味的家庭打造。精选优质原料，采用先进的物理压榨工艺，最大程度保留了油品的天然营养与纯正风味。',
     name: '西王油酸多黑花生油5L',
     category: Category.OIL,
     price: 550,
@@ -212,6 +237,7 @@ export const products: Product[] = [
   {
     id: 22,
     name: '西王玉米胚芽油5.27L（惠 悦味上品）',
+    desc: '西王食用油，源自山东西王食品有限公司的匠心之作，专为追求健康与美味的家庭打造。精选优质原料，采用先进的物理压榨工艺，最大程度保留了油品的天然营养与纯正风味。',
     category: Category.OIL,
     price: 37.9,
     unit: '桶',
@@ -221,6 +247,7 @@ export const products: Product[] = [
   {
     id: 23,
     name: '西王玉米胚芽油5L（零反式脂肪）',
+    desc: '西王食用油，源自山东西王食品有限公司的匠心之作，专为追求健康与美味的家庭打造。精选优质原料，采用先进的物理压榨工艺，最大程度保留了油品的天然营养与纯正风味。',
     category: Category.OIL,
     price: 99.9,
     unit: '桶',
@@ -230,6 +257,7 @@ export const products: Product[] = [
   {
     id: 24,
     name: '西王玉米胚芽油5L（普胚）',
+    desc: '西王食用油，源自山东西王食品有限公司的匠心之作，专为追求健康与美味的家庭打造。精选优质原料，采用先进的物理压榨工艺，最大程度保留了油品的天然营养与纯正风味。',
     category: Category.OIL,
     price: 89.9,
     unit: '桶',
@@ -239,6 +267,7 @@ export const products: Product[] = [
   {
     id: 25,
     name: '西王玉米胚芽油鲜胚5L',
+    desc: '西王食用油，源自山东西王食品有限公司的匠心之作，专为追求健康与美味的家庭打造。精选优质原料，采用先进的物理压榨工艺，最大程度保留了油品的天然营养与纯正风味。',
     category: Category.OIL,
     price: 99.9,
     unit: '桶',
@@ -248,6 +277,7 @@ export const products: Product[] = [
   {
     id: 26,
     name: '西王玉米油5L（尊享、优选）',
+    desc: '西王食用油，源自山东西王食品有限公司的匠心之作，专为追求健康与美味的家庭打造。精选优质原料，采用先进的物理压榨工艺，最大程度保留了油品的天然营养与纯正风味。',
     category: Category.OIL,
     price: 199.9,
     unit: '桶',
@@ -257,6 +287,7 @@ export const products: Product[] = [
   {
     id: 28,
     name: '统一桶装方便面',
+    desc: '统一桶装方便面，方便快捷，美味可口，是现代快节奏生活中的理想选择。精选优质小麦粉，搭配独特的调料包，每一口都带来浓郁的汤底和丰富的口感。无论是忙碌的工作日午餐，还是夜深人静时的小食，统一桶装方便面都能快速满足您的味蕾。',
     category: Category.OTHER,
     price: 5,
     unit: '桶',
@@ -266,6 +297,7 @@ export const products: Product[] = [
   {
     id: 29,
     name: '面条',
+    desc: '面条，作为全球广泛喜爱的传统美食，承载着丰富的文化与味蕾的记忆。精选优质的小麦粉，经过精心揉制、拉制或切制而成，口感劲道，韧性十足。无论是热汤中煮沸，还是炒制、凉拌，面条都能吸收丰富的汤汁或配料精华，展现出其独特的风味。',
     category: Category.OTHER,
     price: 6,
     unit: '袋',
@@ -275,6 +307,7 @@ export const products: Product[] = [
   {
     id: 30,
     name: '猪肉',
+    desc: '猪肉，作为全球最常见和受欢迎的肉类之一，因其鲜嫩多汁和丰富的口感而深受喜爱。猪肉富含优质蛋白质和多种维生素、矿物质，是日常饮食中重要的营养来源之一。其独特的脂肪分布使得猪肉肉质鲜美、口感丰富，无论是煎、炒、炖、烤，还是做成香肠、火腿，都能带来不同层次的美味体验。。',
     category: Category.MEAT,
     price: 10,
     unit: '斤',
@@ -311,6 +344,7 @@ export const products: Product[] = [
   {
     id: 34,
     name: '基围虾',
+    desc: '基围虾，亦称为海虾，是一种味美鲜嫩、营养丰富的海鲜食材。它生活在温暖的海域，体型小巧，外壳呈透明的灰白色，肉质洁白细腻，富含高质量的蛋白质和多种微量元素，如锌、硒和omega-3脂肪酸，是海鲜中常见的优质食品。',
     category: Category.MEAT,
     price: 10,
     unit: '斤',

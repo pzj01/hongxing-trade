@@ -14,7 +14,7 @@ provide('keyword', route.query.keyword)
       <main class="mx-auto max-w-7xl py-6 lg:px-8 sm:px-6">
         <div class="mb-8">
           <h2 class="mb-4 text-2xl text-gray-900 font-semibold">
-            以下是名称包含 “{{ route.query.keyword }}” 的产品
+            <span>以下是名称包含 “{{ route.query.keyword }}” 的采购产品</span>
           </h2>
         </div>
         <!-- 产品列表 -->

@@ -10,7 +10,27 @@ const keyword = ref(keywordValue || '')
 function onSearch() {
   const value = keyword.value.trim()
   if (value) {
-    router.push(`/search?keyword=${value}`)
+    if (value.includes('大米')) {
+      router.push('/rice')
+    }
+    else if (value.includes('猪肉')) {
+      router.push('/pork')
+    }
+    else if (value.includes('基围虾')) {
+      router.push('/shrimp')
+    }
+    else if (value.includes('福禄花鲜香压榨菜籽油')) {
+      router.push('/oil')
+    }
+    else if (value.includes('鸡肉')) {
+      router.push('/chicken')
+    }
+    else if (value.includes('鲈鱼')) {
+      router.push('/fish')
+    }
+    else {
+      router.push(`/search?keyword=${value}`)
+    }
   }
 }
 </script>

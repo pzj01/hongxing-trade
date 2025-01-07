@@ -22,12 +22,29 @@ function toTestReport() {
       <p class="mt-1 text-sm text-gray-500">
         {{ product.category }}
       </p>
+      <p class="line-clamp-3 mt-2 text-sm text-gray-700">
+        {{ product.desc }}
+      </p>
+      <p class="mt-2 text-sm text-gray-700">
+        原产地：江西
+      </p>
+      <p class="mt-2 text-sm text-gray-700">
+        生产日期：2024年12月1日
+      </p>
       <div class="mt-4 flex items-center justify-between">
         <span class="text-xl text-green-600 font-semibold">
           ¥{{ product.price.toFixed(2) }} / {{ product.unit }}
         </span>
         <Button @click="toTestReport">
           查看检测报告
+        </Button>
+      </div>
+      <div mt-4 space-y-2>
+        <Button fluid variant="outlined" severity="secondary" @click="$router.push(`/raw-material?ids=${product.material_ids}&name=${product.name}`)">
+          原材料信息
+        </Button>
+        <Button fluid variant="outlined" severity="secondary">
+          生产过程
         </Button>
       </div>
     </div>
