@@ -16,7 +16,7 @@ function toTestReport() {
   >
     <img :src="product.image" :alt="product.name" class="aspect-square w-full">
     <div class="p-4">
-      <h3 class="w-70 overflow-hidden text-ellipsis text-nowrap text-lg text-gray-900 font-medium">
+      <h3 class="w-60 overflow-hidden text-ellipsis text-nowrap text-lg text-gray-900 font-medium">
         {{ product.name }}
       </h3>
       <p class="mt-1 text-sm text-gray-500">
@@ -40,10 +40,10 @@ function toTestReport() {
         </Button>
       </div>
       <div mt-4 space-y-2>
-        <Button fluid variant="outlined" severity="secondary" @click="$router.push(`/raw-material?ids=${product.material_ids}&name=${product.name}`)">
+        <Button fluid variant="outlined" severity="secondary" @click="product.raw_material_path && $router.push(product.raw_material_path)">
           原材料信息
         </Button>
-        <Button fluid variant="outlined" severity="secondary">
+        <Button fluid variant="outlined" severity="secondary" @click="product.production_process_path && $router.push(product.production_process_path)">
           生产过程
         </Button>
       </div>
