@@ -1,184 +1,281 @@
-<script setup>
-import { ref } from 'vue'
+<script setup lang="ts">
+import type { Product } from '~/types'
+import { products } from '~/data/products'
 
-const products = ref([
+// 产品分类数据
+const categories = ref([
   {
-    name: '粮油大米',
-    desc: '甄选优质稻谷，粒粒饱满，满足不同口感需求。多种规格，涵盖花生油、菜籽油、橄榄油等，确保纯正健康。',
-    src: '/oil.jpg',
+    name: '休闲食品',
+    description: '精选各类美味小吃与休闲零食，满足您随时随地的味蕾享受',
+    image: '/category-snacks.svg',
   },
   {
-    name: '新鲜果蔬',
-    desc: '多品种水果，营养丰富，甜美可口。直接从基地到餐桌，确保无公害种植。',
-    src: '/Vegetables.jpg',
+    name: '肉类制品',
+    description: '优质鸡排、鸡肉及其他健康肉类食品，带来营养与美味的完美结合',
+    image: '/category-nuts.svg',
   },
   {
-    name: '新鲜肉禽',
-    desc: '优选优质肉类，保证新鲜度，满足不同菜式的需求。多种规格，涵盖猪肉、牛肉、羊肉等，确保纯正健康。',
-    src: '/meat.jpg',
+    name: '海鲜鱼类',
+    description: '新鲜虾、鱼、蟹等海鲜精心加工，呈现海洋的鲜美风味',
+    image: '/category-drinks.svg',
+  },
+  {
+    name: '地方特产',
+    description: '汇集全国各地特色美食与传统佳肴，传承地道风味，彰显文化魅力',
+    image: '/category-local.svg',
   },
 ])
 
-const services = ref([
-  {
-    name: '新鲜配送',
-    desc: '当天采购，当天配送，确保食材的新鲜与品质。',
-    src: '/distribution.jpg',
-  },
-  {
-    name: '多品类供应',
-    desc: '从主食到生鲜，从调味品到油脂，一应俱全，满足多元化需求。',
-    src: '/Orange.jpg',
-  },
-  {
-    name: '定制化方案',
-    desc: '为餐厅、企事业单位提供定制的配送服务，灵活调整配送频率与品类。',
-    src: '/plan.jpg',
-  },
-  {
-    name: '全程冷链',
-    desc: '采用冷链运输技术，保障食品品质不受环境影响。',
-    src: '/seafood.jpg',
-  },
-])
-
-// 添加公司优势
+// 公司优势数据
 const advantages = ref([
-  { title: '专注食品配送', desc: '多年的行业经验，深耕食品配送领域，了解客户需求。' },
-  { title: '覆盖广泛', desc: '萍乡及周边区域全覆盖，无论城市还是乡村，都能高效送达。' },
-  { title: '安全可靠', desc: '从采购到配送，全流程严格管控，保证食品安全。' },
-  { title: '客户为本', desc: '始终以客户为中心，提供灵活、高效的个性化服务。' },
+  {
+    title: '品质保证',
+    description: '严格的质量控制体系，确保食品安全',
+    icon: 'pi pi-check-circle',
+  },
+  {
+    title: '价格优惠',
+    description: '直接从源头采购，为您提供优惠价格',
+    icon: 'pi pi-dollar',
+  },
+  {
+    title: '快速配送',
+    description: '高效的物流配送系统，确保及时送达',
+    icon: 'pi pi-send',
+  },
 ])
 
+// 热销产品数据
+const hotProducts = ref<Product[]>(products.slice(0, 7))
+
+// 轮播图响应式配置
+const carouselResponsiveOptions = ref([
+  {
+    breakpoint: '1024px',
+    numVisible: 3,
+    numScroll: 1,
+  },
+  {
+    breakpoint: '768px',
+    numVisible: 2,
+    numScroll: 1,
+  },
+  {
+    breakpoint: '560px',
+    numVisible: 1,
+    numScroll: 1,
+  },
+])
+
+// 客户评价数据
 const testimonials = ref([
-  { name: '张女士', comment: '产品新鲜可口，服务态度很好，非常满意！' },
-  { name: '李先生', comment: '质量有保证，吃得放心，会继续购买的。' },
-  { name: '王女士', comment: '服务很好，产品也很好，非常满意！' },
+  {
+    name: '张先生',
+    title: '餐饮企业负责人',
+    content: '洪星商贸的产品质量非常稳定，价格也很合理，是我们餐厅的长期合作伙伴。',
+    avatar: '/avatar-1.svg',
+  },
+  {
+    name: '李女士',
+    title: '家庭主妇',
+    content: '他们家的鸡排非常新鲜，孩子们都很喜欢。包装也很精美，送人很有面子。',
+    avatar: '/avatar-2.svg',
+  },
+  {
+    name: '王先生',
+    title: '办公室白领',
+    content: '网上下单很方便，配送也很快。产品种类丰富，能满足我们办公室的各种需求。',
+    avatar: '/avatar-3.svg',
+  },
 ])
 </script>
 
 <template>
   <MainLayout>
-    <!-- Main Content -->
-    <main>
-      <!-- Hero Section -->
-      <section class="relative h-[70vh] flex items-center justify-center text-white">
-        <img src="/Vegetable.jpg" class="absolute inset-0 h-full w-full object-cover">
-        <div class="absolute inset-0 bg-black bg-opacity-50" />
-        <div class="z-10 text-center">
-          <h1 class="mb-4 text-5xl font-bold">
-            让健康食材快速到家，为您的餐桌保驾护航
-          </h1>
-          <p class="mb-8 text-xl">
-            优达配送有限公司致力于为您提供健康美味的食材，让您的餐桌上的食物更加美味。
-          </p>
-          <button class="rounded-full bg-white px-6 py-3 text-black font-semibold transition duration-300 hover:bg-gray-200">
-            了解更多
-          </button>
+    <main class="flex-grow">
+      <!-- 英雄区域 -->
+      <section class="relative from-green-50 to-green-100 bg-gradient-to-r py-20">
+        <div class="mx-auto px-4 container">
+          <div class="flex flex-col items-center md:flex-row">
+            <div class="mb-10 md:mb-0 md:w-1/2">
+              <h2 class="mb-4 text-4xl text-green-800 font-bold md:text-5xl">
+                优质食品，健康生活
+              </h2>
+              <p class="mb-8 text-lg text-gray-700">
+                萍乡洪星商贸有限公司致力于为您提供安全、健康、美味的食品，让每一餐都充满幸福。
+              </p>
+              <div class="flex flex-col sm:flex-row space-y-3 sm:space-x-4 sm:space-y-0">
+                <Button label="了解更多" class="p-button-success p-button-lg" @click="$router.push('/products')" />
+                <Button label="联系我们" class="p-button-success p-button-lg p-button-outlined" @click="$router.push('/contact')" />
+              </div>
+            </div>
+            <div class="md:w-1/2">
+              <!-- <img src="/hero-food-image.svg" alt="优质食品展示" class="h-auto w-full rounded-lg shadow-lg"> -->
+            </div>
+          </div>
+        </div>
+
+        <!-- 装饰元素 -->
+        <div class="absolute bottom-0 left-0 w-full overflow-hidden" style="height: 70px;">
+          <svg class="absolute bottom-0 overflow-hidden" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" version="1.1" viewBox="0 0 2560 100" x="0" y="0">
+            <polygon class="fill-current text-white" points="2560 0 2560 100 0 100" />
+          </svg>
         </div>
       </section>
 
-      <!-- About Us Section -->
-      <section text-black class="bg-gray-100 py-16">
+      <!-- 产品分类 -->
+      <section class="bg-white py-16">
         <div class="mx-auto px-4 container">
-          <h2 class="mb-8 text-center text-3xl font-bold">
-            关于我们
-          </h2>
-          <p class="mx-auto max-w-2xl text-center">
-            萍乡优达配送有限公司是一家专业从事配送的企业，专注于为客户提供安全、优质、快捷的配送服务。我们主营各类食品配送，包括大米、鱼类、鸡鸭、食用油等日常所需食材，致力于打造一站式食品供应链服务。无论是餐饮企业、商超还是社区用户，我们都能满足您的需求。
-          </p>
-        </div>
-      </section>
+          <div class="mb-12 text-center">
+            <h2 class="mb-4 text-3xl text-gray-800 font-bold">
+              产品分类
+            </h2>
+            <p class="mx-auto max-w-2xl text-gray-600">
+              我们提供多种类型的优质食品，满足您不同的需求
+            </p>
+          </div>
 
-      <!-- Services Section -->
-      <section text-black class="py-16">
-        <div class="mx-auto px-4 container">
-          <h2 class="mb-8 text-center text-3xl font-bold">
-            我们的服务
-          </h2>
-          <div class="grid grid-cols-1 gap-8 md:grid-cols-4">
-            <div v-for="service in services" :key="service.name" class="overflow-hidden rounded-lg bg-white shadow-md">
-              <div class="p-4">
-                <img :src="service.src" :alt="service.name" class="mb-4 h-48 w-full rounded-md object-cover">
-                <h3 class="mb-2 text-xl font-semibold">
-                  {{ service.name }}
+          <div class="grid grid-cols-1 gap-8 lg:grid-cols-4 sm:grid-cols-2">
+            <div v-for="(category, index) in categories" :key="index" class="overflow-hidden rounded-lg bg-white shadow-md transition-transform duration-300 hover:shadow-lg hover:-translate-y-1">
+              <!-- <img :src="category.image" :alt="category.name" class="h-48 w-full object-cover"> -->
+              <div class="p-5">
+                <h3 class="mb-2 text-xl text-gray-800 font-semibold">
+                  {{ category.name }}
                 </h3>
-                <p>{{ service.desc }}</p>
+                <p class="mb-4 text-gray-600">
+                  {{ category.description }}
+                </p>
+                <Button label="查看详情" class="p-button-text p-button-success" icon="pi pi-arrow-right" icon-pos="right" />
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Products Section -->
-      <section text-black class="py-16">
+      <!-- 公司优势 -->
+      <section class="bg-gray-50 py-16">
         <div class="mx-auto px-4 container">
-          <h2 class="mb-8 text-center text-3xl font-bold">
-            我们的产品
-          </h2>
+          <div class="mb-12 text-center">
+            <h2 class="mb-4 text-3xl text-gray-800 font-bold">
+              我们的优势
+            </h2>
+            <p class="mx-auto max-w-2xl text-gray-600">
+              为什么选择萍乡洪星商贸有限公司
+            </p>
+          </div>
+
           <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
-            <div v-for="product in products" :key="product" class="overflow-hidden rounded-lg bg-white shadow-md">
-              <div class="p-4">
-                <img :src="product.src" :alt="product" class="mb-4 h-48 w-full rounded-md object-cover">
-                <h3 class="mb-2 text-xl font-semibold">
-                  {{ product.name }}
-                </h3>
-                <p>优质{{ product.desc }}，为您的健康保驾护航。</p>
+            <div v-for="(advantage, index) in advantages" :key="index" class="rounded-lg bg-white p-6 text-center shadow-md">
+              <div class="mx-auto mb-4 h-16 w-16 flex items-center justify-center rounded-full bg-green-100">
+                <i :class="advantage.icon" style="font-size: 1.5rem;" class="text-green-600" />
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section text-black class="bg-gray-100 py-16">
-        <div class="mx-auto px-4 container">
-          <h2 class="mb-8 text-center text-3xl font-bold">
-            公司优势
-          </h2>
-          <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
-            <div v-for="advantage in advantages" :key="advantage.title" class="rounded-lg bg-white p-6 shadow-md">
-              <h3 class="text-lg font-semibold">
+              <h3 class="mb-2 text-xl text-gray-800 font-semibold">
                 {{ advantage.title }}
               </h3>
-              <p class="mt-2">
-                {{ advantage.desc }}
+              <p class="text-gray-600">
+                {{ advantage.description }}
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Testimonials Section -->
-      <section text-black class="bg-gray-100 py-16">
+      <!-- 热销产品 -->
+      <section class="bg-white py-16">
         <div class="mx-auto px-4 container">
-          <h2 class="mb-8 text-center text-3xl font-bold">
-            客户评价
-          </h2>
-          <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
-            <div v-for="(testimonial, index) in testimonials" :key="index" class="rounded-lg bg-white p-6 shadow-md">
-              <p class="mb-4">
-                "{{ testimonial.comment }}"
+          <div class="mb-12 text-center">
+            <h2 class="mb-4 text-3xl text-gray-800 font-bold">
+              热销产品
+            </h2>
+            <p class="mx-auto max-w-2xl text-gray-600">
+              精选优质食品，满足您的味蕾
+            </p>
+          </div>
+
+          <Carousel :value="hotProducts" :num-visible="3" :num-scroll="1" :responsive-options="carouselResponsiveOptions" class="mb-8">
+            <template #item="slotProps">
+              <div class="p-4">
+                <div class="overflow-hidden border border-gray-200 rounded-lg bg-white shadow-sm">
+                  <!-- <img :src="slotProps.data.image" :alt="slotProps.data.name" class="h-48 w-full object-cover"> -->
+                  <div class="p-4">
+                    <h3 class="mb-2 text-lg text-gray-800 font-semibold">
+                      {{ slotProps.data.name }}
+                    </h3>
+                    <p class="line-clamp-2 mb-3 text-gray-600">
+                      {{ slotProps.data.description }}
+                    </p>
+                    <div class="flex items-center justify-between">
+                      <span class="text-green-600 font-bold">¥{{ slotProps.data.price }}</span>
+                      <Button icon="pi pi-shopping-cart" class="p-button-rounded p-button-success p-button-sm" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </template>
+          </Carousel>
+
+          <div class="text-center">
+            <Button label="查看全部产品" class="p-button-outlined p-button-success" />
+          </div>
+        </div>
+      </section>
+
+      <!-- 关于我们 -->
+      <section class="from-green-50 to-green-100 bg-gradient-to-r py-16">
+        <div class="mx-auto px-4 container">
+          <div class="flex flex-col items-center md:flex-row">
+            <div class="mb-10 h-96 overflow-hidden md:mb-0 md:w-1/2">
+              <img object-cover src="/about-us-image.png" alt="关于萍乡洪星商贸" class="h-auto w-full rounded-lg shadow-lg">
+            </div>
+            <div class="md:w-1/2 md:pl-12">
+              <h2 class="mb-4 text-3xl text-gray-800 font-bold">
+                关于我们
+              </h2>
+              <p class="mb-6 text-gray-700">
+                萍乡洪星商贸有限公司成立于2021年，是一家专注于食品销售的企业。多年来，我们始终坚持"质量第一，客户至上"的经营理念，致力于为消费者提供安全、健康、美味的食品。
               </p>
-              <p class="font-semibold">
-                - {{ testimonial.name }}
+              <p class="mb-6 text-gray-700">
+                我们拥有完善的供应链体系和严格的质量控制流程，确保每一件产品都符合国家食品安全标准。同时，我们不断创新，推出更多符合现代人健康需求的食品。
               </p>
+              <Button label="了解更多" icon="pi pi-arrow-right" icon-pos="right" class="p-button-success" @click="$router.push('/about')" />
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Contact Us Section -->
-      <section class="py-16">
-        <div class="mx-auto px-4 text-center container">
-          <h2 class="mb-8 text-3xl font-bold">
-            联系我们
-          </h2>
-          <p class="mb-4">
-            如果您有任何问题或建议，请随时与我们联系
-          </p>
-          <button class="rounded-full bg-black px-6 py-3 text-white font-semibold transition duration-300 hover:bg-gray-800">
-            联系我们
-          </button>
+      <!-- 客户评价 -->
+      <section class="bg-white py-16">
+        <div class="mx-auto px-4 container">
+          <div class="mb-12 text-center">
+            <h2 class="mb-4 text-3xl text-gray-800 font-bold">
+              客户评价
+            </h2>
+            <p class="mx-auto max-w-2xl text-gray-600">
+              听听我们的客户怎么说
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+            <div v-for="(testimonial, index) in testimonials" :key="index" class="rounded-lg bg-gray-50 p-6 shadow-sm">
+              <div class="mb-4 flex items-center">
+                <Rating :model-value="5" readonly :cancel="false" />
+              </div>
+              <p class="mb-4 text-gray-700 italic">
+                {{ testimonial.content }}
+              </p>
+              <div class="flex items-center">
+                <!-- <img :src="testimonial.avatar" :alt="testimonial.name" class="mr-4 h-12 w-12 rounded-full"> -->
+                <div>
+                  <h4 class="text-gray-800 font-semibold">
+                    {{ testimonial.name }}
+                  </h4>
+                  <p class="text-sm text-gray-600">
+                    {{ testimonial.title }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </main>

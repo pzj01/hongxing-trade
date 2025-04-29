@@ -1,5 +1,5 @@
 import type { Item } from './useManagement'
-import type { Product } from '~/products'
+import type { Product } from '~/data/products'
 import { defineStore } from 'pinia'
 
 export interface Purchase extends Item {

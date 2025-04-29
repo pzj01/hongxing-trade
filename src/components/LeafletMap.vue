@@ -1,11 +1,12 @@
 <script setup lang="ts">
+import type { LatLngTuple } from 'leaflet'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 
 let map: L.Map | null
 
 onMounted(() => setTimeout(initMap, 300))
-const coords = [27.61, 113.85] as const
+const coords = [27.61, 113.85] as LatLngTuple
 
 function initMap() {
   map = L.map('map', {
@@ -37,5 +38,5 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div id="map" h-64 rounded-lg />
+  <div id="map" h-full />
 </template>

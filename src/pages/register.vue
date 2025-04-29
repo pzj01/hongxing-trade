@@ -1,5 +1,4 @@
 <script setup>
-import { Lock, Mail, MessageCircle, MessageSquare, Rss } from 'lucide-vue-next'
 import { useToast } from 'primevue/usetoast'
 import { useUserStore } from '~/composables/user'
 import { Role } from '~/types'

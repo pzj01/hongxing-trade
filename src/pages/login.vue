@@ -1,5 +1,4 @@
 <script setup>
-import { Lock, Mail, MessageCircle, MessageSquare, Rss } from 'lucide-vue-next'
 import { useToast } from 'primevue/usetoast'
 import { useUserStore } from '~/composables/user'
 import { Role } from '~/types'
@@ -57,7 +56,7 @@ function handleSubmit() {
           </FloatLabel>
 
           <FloatLabel v-show="role !== Role.VIEWER">
-            <Password v-model="form.password" :feedback="false" toggle-mask fluid input-id="password" />
+            <Password v-model="form.password" :feedback="false" fluid toggle-mask input-id="password" />
             <label for="password">密码</label>
           </FloatLabel>
 

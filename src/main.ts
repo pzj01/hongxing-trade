@@ -12,6 +12,8 @@ import '@unocss/reset/tailwind.css'
 import 'uno.css'
 import './styles/main.css'
 
+import 'primeicons/primeicons.css'
+
 const app = createApp(App)
 const router = createRouter({
   routes,

@@ -1,5 +1,4 @@
 <script setup>
-import { ArrowRightIcon, SearchIcon } from 'lucide-vue-next'
 import { rawMaterials } from '~/raw-materials'
 
 const route = useRoute()

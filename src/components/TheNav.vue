@@ -1,86 +1,92 @@
 <script setup lang="ts">
-import { format } from 'date-fns'
-import { zhCN } from 'date-fns/locale'
+// const keywordValue = inject<string>('keyword', '')
 
-const keywordValue = inject<string>('keyword', '')
+// const router = useRouter()
+// const keyword = ref(keywordValue || '')
 
-const router = useRouter()
-const keyword = ref(keywordValue || '')
+// function onSearch() {
+//   const value = keyword.value.trim()
+//   if (value) {
+//     router.push(`/search?keyword=${value}`)
+//   }
+// }
 
-function onSearch() {
-  const value = keyword.value.trim()
-  if (value) {
-    if (value.includes('大米')) {
-      router.push('/rice')
-    }
-    else if (value.includes('猪肉')) {
-      router.push('/pork')
-    }
-    else if (value.includes('基围虾')) {
-      router.push('/shrimp')
-    }
-    else if (value.includes('福禄花鲜香压榨菜籽油')) {
-      router.push('/oil')
-    }
-    else if (value.includes('鸡肉')) {
-      router.push('/chicken')
-    }
-    else if (value.includes('鲈鱼')) {
-      router.push('/fish')
-    }
-    else {
-      router.push(`/search?keyword=${value}`)
-    }
-  }
-}
+// 移动端菜单状态
+const menuVisible = ref(false)
 </script>
 
 <template>
-  <div bg-green-600 px-32 py-1 text-white>
-    <span>欢迎来到萍乡优达配送官网！今天是：{{ format(new Date(), 'yyyy年MM月dd日 EEEE', { locale: zhCN }) }}</span>
-  </div>
-  <header class="main-header bg-white shadow-md">
-    <div class="mx-auto flex items-center justify-between px-4 py-4 container">
-      <div class="flex items-center">
-        <a class="text-xl text-gray-800 font-bold" href="/">萍乡优达配送有限公司</a>
-      </div>
-      <nav>
-        <ul class="flex items-center space-x-6">
-          <!-- search -->
-          <IconField>
+  <!-- 导航栏 -->
+  <header class="sticky top-0 z-50 bg-white shadow-md">
+    <div class="mx-auto px-4 py-3 container">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center">
+          <!-- <img src="/logo-placeholder.svg" alt="萍乡洪星商贸有限公司" class="mr-3 h-12"> -->
+          <h1 class="text-2xl text-green-700 font-bold">
+            <RouterLink to="/">
+              萍乡洪星商贸有限公司
+            </RouterLink>
+          </h1>
+        </div>
+
+        <nav class="hidden items-center lg:flex space-x-8">
+          <!-- <IconField>
             <InputIcon class="i-carbon-search" />
             <InputText v-model="keyword" size="small" placeholder="搜索产品..." @keydown.enter="onSearch" />
             <Button ml-2 size="small" @click="onSearch">
               搜索
             </Button>
-          </IconField>
-          <li>
-            <RouterLink to="/" active-class="text-gray-900" class="text-gray-600 hover:text-gray-900">
-              首页
-            </RouterLink>
-          </li>
-          <li>
-            <RouterLink to="/about" active-class="text-gray-900" class="text-gray-600 hover:text-gray-900">
-              关于我们
-            </RouterLink>
-          </li>
-          <li>
-            <RouterLink to="/products" active-class="text-gray-900" class="text-gray-600 hover:text-gray-900">
-              产品
-            </RouterLink>
-          </li>
-          <li>
-            <RouterLink to="/contact" active-class="text-gray-900" class="text-gray-600 hover:text-gray-900">
-              联系我们
-            </RouterLink>
-          </li>
-          <li>
-            <RouterLink to="/login" active-class="text-gray-900" class="text-gray-600 hover:text-gray-900">
-              登录
-            </RouterLink>
-          </li>
-        </ul>
-      </nav>
+          </IconField> -->
+          <RouterLink to="/" active-class="text-green-600" class="font-medium hover:text-green-600">
+            首页
+          </RouterLink>
+          <RouterLink to="/products" active-class="text-green-600" class="text-gray-600 font-medium hover:text-green-600">
+            产品中心
+          </RouterLink>
+          <RouterLink to="/about" active-class="text-green-600" class="text-gray-600 font-medium hover:text-green-600">
+            关于我们
+          </RouterLink>
+          <RouterLink to="/contact" active-class="text-green-600" class="text-gray-600 font-medium hover:text-green-600">
+            联系我们
+          </RouterLink>
+          <RouterLink to="/login" active-class="text-green-600" class="text-gray-600 font-medium hover:text-green-600">
+            登录
+          </RouterLink>
+        </nav>
+
+        <Button
+          icon="pi pi-bars"
+          class="p-button-text p-button-rounded lg:hidden!"
+          aria-label="菜单"
+          @click="menuVisible = true"
+        />
+      </div>
     </div>
   </header>
+
+  <!-- 移动端菜单 -->
+  <Sidebar v-model:visible="menuVisible" position="right" class="lg:hidden!">
+    <div class="p-4">
+      <h2 class="mb-6 text-xl text-green-700 font-bold">
+        萍乡洪星商贸有限公司
+      </h2>
+      <div class="flex flex-col space-y-4">
+        <RouterLink to="/" active-class="text-green-600" class="border-b border-gray-100 py-2 font-medium hover:text-green-600">
+          首页
+        </RouterLink>
+        <RouterLink to="/products" active-class="text-green-600" class="border-b border-gray-100 py-2 text-gray-600 font-medium hover:text-green-600">
+          产品中心
+        </RouterLink>
+        <RouterLink to="/about" active-class="text-green-600" class="border-b border-gray-100 py-2 text-gray-600 font-medium hover:text-green-600">
+          关于我们
+        </RouterLink>
+        <RouterLink to="/contact" active-class="text-green-600" class="py-2 text-gray-600 font-medium hover:text-green-600">
+          联系我们
+        </RouterLink>
+        <RouterLink to="/login" active-class="text-green-600" class="border-b border-gray-100 py-2 text-gray-600 font-medium hover:text-green-600">
+          登录
+        </RouterLink>
+      </div>
+    </div>
+  </Sidebar>
 </template>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { products } from '~/products'
+import { products } from '~/data/products'
 
 const route = useRoute()
 
