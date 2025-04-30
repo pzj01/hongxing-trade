@@ -17,16 +17,20 @@ const sortOptions = ref([
   { name: '默认排序', value: 'default' },
   { name: '价格从低到高', value: 'price-asc' },
   { name: '价格从高到低', value: 'price-desc' },
-  { name: '最新上架', value: 'newest' },
-  { name: '销量优先', value: 'sales' },
 ])
+
+const keyword = useLocalStorage('keyword', '')
 
 // 筛选条件
 const filters = ref({
-  search: '',
+  search: keyword.value,
   selectedCategories: [] as Category[],
   priceRange: [0, 500],
   sortBy: 'default',
+})
+
+watch(() => filters.value.search, (value) => {
+  keyword.value = value
 })
 
 // 产品分类
@@ -148,7 +152,7 @@ onMounted(() => {
                   </h3>
                   <div class="relative">
                     <InputText
-                      v-model="filters.search"
+                      v-model.trim.lazy="filters.search"
                       placeholder="搜索产品..."
                       class="w-full pr-10"
                     />
@@ -276,7 +280,7 @@ onMounted(() => {
                         {{ product.name }}
                       </h3>
                       <Badge v-if="product.stockQuantity <= 10 && product.stockQuantity > 0" value="库存紧张" severity="warning" />
-                      <Badge v-else-if="product.stock === 0" value="售罄" severity="danger" />
+                      <Badge v-else-if="product.stockQuantity === 0" value="售罄" severity="danger" />
                     </div>
                     <p class="line-clamp-2 mb-3 text-gray-600">
                       {{ product.description }}
@@ -317,7 +321,7 @@ onMounted(() => {
                             {{ product.name }}
                           </h3>
                           <Badge v-if="product.stockQuantity <= 10 && product.stockQuantity > 0" value="库存紧张" severity="warning" />
-                          <Badge v-else-if="product.stock === 0" value="售罄" severity="danger" />
+                          <Badge v-else-if="product.stockQuantity === 0" value="售罄" severity="danger" />
                         </div>
                         <p class="mb-4 text-gray-600">
                           {{ product.description }}

@@ -9,19 +9,19 @@ function setChartData() {
   const documentStyle = getComputedStyle(document.documentElement)
 
   return {
-    labels: ['面包', '苹果', '蔬菜', '香蕉', '鸡蛋', '牛奶'],
+    labels: ['太湖燕饺', '迷你燕饺', '水晶包', '霞迷饺', '霞迷饺', '霞迷饺'],
     datasets: [
       {
         label: '上一季度',
         backgroundColor: documentStyle.getPropertyValue('--p-cyan-500'),
         borderColor: documentStyle.getPropertyValue('--p-cyan-500'),
-        data: [65, 59, 80, 81, 56, 55],
+        data: [65, 59, 80, 81, 56, 55].map(n => Math.floor(n * Math.random() * 100)),
       },
       {
         label: '本季度',
         backgroundColor: documentStyle.getPropertyValue('--p-gray-500'),
         borderColor: documentStyle.getPropertyValue('--p-gray-500'),
-        data: [28, 48, 40, 19, 86, 27],
+        data: [540, 325, 702, 620, 461, 634].map(n => Math.floor(n * Math.random() * 100)),
       },
     ],
   }

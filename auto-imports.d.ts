@@ -309,6 +309,9 @@ declare global {
   export type { Component, ComponentPublicInstance, ComputedRef, DirectiveBinding, ExtractDefaultPropTypes, ExtractPropTypes, ExtractPublicPropTypes, InjectionKey, PropType, Ref, MaybeRef, MaybeRefOrGetter, VNode, WritableComputedRef } from 'vue'
   import('vue')
   // @ts-ignore
+  export type { Product } from './src/composables/product'
+  import('./src/composables/product')
+  // @ts-ignore
   export type { Purchase, Supplier } from './src/composables/purchase'
   import('./src/composables/purchase')
   // @ts-ignore

@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import type { Product } from '~/types'
+import type { Product } from '~/composables/product'
 import { FilterMatchMode } from '@primevue/core/api'
 import { format } from 'date-fns'
 import { useConfirm } from 'primevue/useconfirm'
 import { useToast } from 'primevue/usetoast'
 import { useProductStore } from '~/composables/product'
-import { Role } from '~/types'
+import { Category, CategoryList, PackagingType, PackagingTypeList, Role, Unit, UnitList, WeightUnit, WeightUnitList } from '~/types'
 
 const { products, addProduct, updateProduct, deleteProduct } = useProductStore()
 const { user } = useUserStore()
@@ -16,22 +16,23 @@ const filters = ref({
   name: { value: null, matchMode: FilterMatchMode.CONTAINS },
 })
 
-const defaultForm = {
+const defaultForm: Product = {
   id: 0,
   name: '',
   date: new Date(),
-  document_number: '',
-  raw_materials: '',
-  additives: '',
-  related_name: '',
-  specification: '',
-  unit: '',
-  responsible_person: '',
-  shelf_life: '',
-  entry_time: new Date(),
-  exit_time: new Date(),
-  production_date: new Date(),
-  quantity: 0,
+  description: '',
+  category: Category.DumplingsAndBuns,
+  price: 0,
+  unit: Unit.PACKAGE,
+  weight: 0,
+  weightUnit: WeightUnit.G,
+  stockQuantity: 0,
+  storageMethod: '',
+  brand: '',
+  origin: '',
+  packagingType: PackagingType.Compressed,
+  sku: '',
+  shelfLife: '',
 }
 
 const header = ref('')
@@ -167,7 +168,7 @@ function clickDelete() {
         </p>
       </template>
       <Column selection-mode="multiple" header-style="width: 3rem" />
-      <Column field="document_number" header="仓储单据编号" style="min-width: 8em;" />
+      <Column field="sku" header="编号" style="min-width: 8em;" />
       <Column field="name" header="名称" style="min-width: 10em;">
         <template #body="{ data }">
           {{ data.name }}
@@ -181,36 +182,39 @@ function clickDelete() {
           {{ format(data[field], 'yyyy-MM-dd') }}
         </template>
       </Column>
-      <Column field="raw_materials" header="食品原料" style="min-width: 10em;" />
-      <Column field="additives" header="食品添加剂" style="min-width: 10em;" />
-      <Column field="related_name" header="食品相关产品名称" style="min-width: 10em;" />
-      <Column field="specification" header="规格" style="min-width: 8em;" />
-      <Column field="production_date" data-type="date" header="生产日期" style="min-width: 8em;">
+      <Column field="description" header="描述" style="min-width: 10em;">
         <template #body="{ data, field }">
-          {{ format(data[field], 'yyyy-MM-dd') }}
+          <p w-56 class="overflow-hidden text-ellipsis text-nowrap">
+            {{ data[field] }}
+          </p>
         </template>
       </Column>
-      <Column field="shelf_life" header="保质期" style="min-width: 6em;" />
-      <Column field="entry_time" data-type="date" header="入库日期" style="min-width: 8em;">
+      <Column field="category" header="分类" style="min-width: 10em;" />
+      <Column field="price" header="价格" style="min-width: 10em;">
+        <Column field="weight" header="规格" style="min-width: 8em;" />
         <template #body="{ data, field }">
-          {{ format(data[field], 'yyyy-MM-dd') }}
+          {{ data[field] }}{{ data.weightUnit }}/{{ data.unit }}
         </template>
       </Column>
-      <Column field="exit_time" data-type="date" header="出库日期" style="min-width: 8em;">
+      <Column field="brand" header="品牌" style="min-width: 8em;" />
+      <Column field="shelfLife" header="保质期" style="min-width: 6em;" />
+      <Column field="origin" header="产地" style="min-width: 8em;" />
+      <Column field="packagingType" header="包装类型" style="min-width: 8em;" />
+      <Column field="stockQuantity" header="库存" style="min-width: 4em;" />
+      <Column field="storageMethod" header="存储方式" style="min-width: 6em;">
         <template #body="{ data, field }">
-          {{ format(data[field], 'yyyy-MM-dd') }}
+          <p class="text-nowrap">
+            {{ data[field] }}
+          </p>
         </template>
       </Column>
-      <Column field="unit" header="计量单位" style="min-width: 6em;" />
-      <Column field="quantity" header="库存" style="min-width: 4em;" />
-      <Column field="responsible_person" header="负责人" style="min-width: 6em;" />
     </DataTable>
   </div>
   <Dialog v-model:visible="isVisible" modal :header :style="{ width: '25rem' }">
     <form mt-8 space-y-10>
       <FloatLabel>
-        <InputText id="document_number" v-model="form.document_number" fluid />
-        <label for="document_number">仓储单据编号</label>
+        <InputText id="sku" v-model="form.sku" fluid />
+        <label for="sku">编号</label>
       </FloatLabel>
       <FloatLabel>
         <InputText id="name" v-model="form.name" fluid />
@@ -221,38 +225,57 @@ function clickDelete() {
         <DatePicker v-model="form.date" fluid placeholder="日期" date-format="yy/mm/dd" />
       </div>
       <FloatLabel>
-        <InputText id="raw_materials" v-model="form.raw_materials" fluid />
-        <label for="raw_materials">食品原料</label>
+        <Textarea id="description" v-model="form.description" rows="5" cols="30" style="resize: none" />
+        <label for="description">描述</label>
       </FloatLabel>
       <FloatLabel>
-        <InputText id="additives" v-model="form.additives" fluid />
-        <label for="additives">食品添加剂</label>
+        <Select v-model="form.category" :options="CategoryList" placeholder="请选择类别" class="w-full md:w-56" />
+        <label for="category">分类</label>
       </FloatLabel>
-      <FloatLabel>
-        <InputText id="related_name" v-model="form.related_name" fluid />
-        <label for="related_name">食品相关产品名称</label>
-      </FloatLabel>
-      <FloatLabel>
-        <InputText id="specification" v-model="form.specification" fluid />
-        <label for="specification">规格</label>
-      </FloatLabel>
+      <div flex gap-x-2>
+        <FloatLabel>
+          <InputNumber v-model="form.price" input-id="price" fluid />
+          <label for="price">价格</label>
+        </FloatLabel>
+        <FloatLabel>
+          <Select v-model="form.unit" :options="UnitList" placeholder="请选择单位" class="w-full md:w-56" />
+          <label for="unit">单位</label>
+        </FloatLabel>
+      </div>
+      <div flex gap-x-2>
+        <FloatLabel>
+          <InputNumber id="weight" v-model="form.weight" fluid />
+          <label for="weight">重量</label>
+        </FloatLabel>
+        <FloatLabel>
+          <Select v-model="form.weightUnit" :options="WeightUnitList" placeholder="请选择单位" class="w-full md:w-56" />
+          <label for="weightUnit">单位</label>
+        </FloatLabel>
+      </div>
       <div>
-        <label for="quantity" style="color: var(--p-form-field-color)" class="mb-2 block font-bold">生产日期</label>
-        <DatePicker v-model="form.production_date" fluid placeholder="生产日期" date-format="yy/mm/dd" />
+        <label for="date" style="color: var(--p-form-field-color)" class="mb-2 block font-bold">生产日期</label>
+        <DatePicker v-model="form.date" fluid placeholder="生产日期" date-format="yy/mm/dd" />
       </div>
       <FloatLabel>
-        <InputText id="shelf_life" v-model="form.shelf_life" fluid />
+        <InputText id="shelfLife" v-model="form.shelfLife" fluid />
         <label for="shelf_life">保质期</label>
       </FloatLabel>
-      <DatePicker v-model="form.entry_time" fluid placeholder="入库日期" date-format="yy/mm/dd" />
-      <DatePicker v-model="form.exit_time" fluid placeholder="出库日期" date-format="yy/mm/dd" />
+
       <FloatLabel>
-        <InputText id="unit" v-model="form.unit" fluid />
-        <label for="unit">计量单位</label>
+        <InputText id="brand" v-model="form.brand" fluid />
+        <label for="brand">品牌</label>
+      </FloatLabel>
+      <FloatLabel>
+        <InputText id="origin" v-model="form.origin" fluid />
+        <label for="origin">产地</label>
+      </FloatLabel>
+      <FloatLabel>
+        <Select v-model="form.packagingType" :options="PackagingTypeList" placeholder="请选择包装类型" class="w-full md:w-56" />
+        <label for="packagingType">包装类型</label>
       </FloatLabel>
       <div>
-        <label for="quantity" style="color: var(--p-form-field-color)" class="mb-2 block font-bold">库存</label>
-        <InputNumber v-model="form.quantity" show-buttons button-layout="horizontal" style="width: 3rem" :min="0">
+        <label for="stockQuantity" style="color: var(--p-form-field-color)" class="mb-2 block font-bold">库存</label>
+        <InputNumber v-model="form.stockQuantity" show-buttons button-layout="horizontal" style="width: 3rem" :min="0">
           <template #incrementicon>
             <i i-carbon-add />
           </template>
@@ -262,8 +285,8 @@ function clickDelete() {
         </InputNumber>
       </div>
       <FloatLabel>
-        <InputText id="responsible_person" v-model="form.responsible_person" fluid />
-        <label for="responsible_person">负责人</label>
+        <Textarea id="storageMethod" v-model="form.storageMethod" rows="5" cols="30" style="resize: none" />
+        <label for="storageMethod">存储方式</label>
       </FloatLabel>
       <Button fluid @click="handleSubmit">
         提交

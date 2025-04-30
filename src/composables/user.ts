@@ -3,21 +3,21 @@ import { useToast } from 'primevue/usetoast'
 import { Role, type User } from '~/types'
 
 const DEFAULT_USER: User = {
-  id: 0,
+  id: 1,
   username: '查询人',
   password: '',
   role: Role.VIEWER,
 }
 
 const DEFAULT_PURCHASER: User = {
-  id: 1,
+  id: 2,
   username: 'purchaser',
   password: '123456',
   role: Role.PURCHASER,
 }
 
 const DEFAULT_ADMIN: User = {
-  id: 2,
+  id: 3,
   username: 'admin',
   password: '123456',
   role: Role.ADMIN,
@@ -30,8 +30,9 @@ const DEFAULT_USERS: User[] = [
 ]
 
 export const useUserStore = defineStore('user', () => {
-  const user = ref(<User | null>(null))
+  const currentLoginUserId = useLocalStorage<number>('user', -1)
   const users = useLocalStorage<User[]>('users', DEFAULT_USERS)
+  const user = ref<User | null | undefined>(users.value.find(u => u.id === currentLoginUserId.value))
   const toast = useToast()
   const isLogin = computed(() => !!user.value)
   const router = useRouter()
@@ -79,6 +80,10 @@ export const useUserStore = defineStore('user', () => {
     user.value = null
     router.push('/login')
   }
+
+  watch(user, (user) => {
+    currentLoginUserId.value = user?.id
+  })
 
   return {
     isLogin,

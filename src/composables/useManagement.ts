@@ -2,7 +2,6 @@ import { useToast } from 'primevue/usetoast'
 
 export interface Item {
   id: number
-  [key: string]: unknown
 }
 
 export interface useManagementOptions<T extends Item> {

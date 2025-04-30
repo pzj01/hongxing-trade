@@ -64,7 +64,6 @@ export interface Product extends Item {
   stockQuantity: number
   nutritionalInfo: Nutritional
   certifications: string[]
-  storageInstructions: string
   brand: string
   origin: string
   packagingType: PackagingType
@@ -124,3 +123,26 @@ export enum WeightUnit {
   L = '升',
   ML = '毫升',
 }
+
+export const PackagingTypeList = [
+  PackagingType.Compressed,
+  PackagingType.PaperBag,
+  PackagingType.PlasticBag,
+  PackagingType.Vacuum,
+  PackagingType.Other,
+]
+
+export const UnitList = [
+  Unit.BAG,
+  Unit.BOTTLE,
+  Unit.BOX,
+  Unit.PACKAGE,
+]
+
+export const WeightUnitList = [
+  WeightUnit.G,
+  WeightUnit.KG,
+  WeightUnit.L,
+  WeightUnit.MG,
+  WeightUnit.ML,
+]

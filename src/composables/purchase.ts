@@ -1,5 +1,5 @@
 import type { Item } from './useManagement'
-import type { Product } from '~/data/products'
+import type { Product } from '~/types'
 import { defineStore } from 'pinia'
 
 export interface Purchase extends Item {
@@ -21,14 +21,14 @@ export interface Supplier extends Item {
 export const suppliers: Supplier[] = [
   {
     id: 1,
-    name: '食品供应商1',
+    name: '山东众克食品有限公司',
     contact: 'Contact 1',
     phone: '123-456-7890',
     address: 'Address 1',
   },
   {
     id: 2,
-    name: '食品供应商2',
+    name: '山东太合食品有限公司',
     contact: 'Contact 2',
     phone: '987-654-3210',
     address: 'Address 2',
@@ -66,7 +66,6 @@ export const DEFAULT_PURCHASE: Purchase[] = [
     date: new Date(),
     quantity: 15,
     unit_price: 7,
-    total_price: 105,
     remarks: '到了一半',
   },
 ]
