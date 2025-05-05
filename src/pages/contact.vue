@@ -135,7 +135,7 @@ function closeSuccessDialog() {
 
 // 拨打客服热线
 function callCustomerService() {
-  window.location.href = 'tel:0799-1234567'
+  window.location.href = 'tel:18307994169'
 }
 
 // 打开在线客服
@@ -232,10 +232,10 @@ onMounted(() => {
                       联系电话
                     </h3>
                     <p class="text-gray-600">
-                      客服热线: 0799-1234567
+                      客服热线: 18307994169
                     </p>
                     <p class="text-gray-600">
-                      售后服务: 0799-7654321
+                      售后服务: 18307994169
                     </p>
                   </div>
                 </div>
@@ -539,9 +539,6 @@ onMounted(() => {
           />
         </div>
       </Dialog>
-
-      <!-- Toast消息 -->
-      <Toast position="bottom-right" />
     </div>
   </MainLayout>
 </template>

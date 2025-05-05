@@ -65,7 +65,7 @@ import { Category } from '~/types'
             </li>
             <li class="flex items-start">
               <i class="pi pi-phone mr-2 mt-1" />
-              <span>0799-1234567</span>
+              <span>18307994169</span>
             </li>
             <li class="flex items-start">
               <i class="pi pi-envelope mr-2 mt-1" />
