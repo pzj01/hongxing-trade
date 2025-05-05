@@ -82,7 +82,7 @@ function openTestReport(product) {
                 <img
                   :src="product.image"
                   :alt="product.name"
-                  class="aspect-square h-auto w-full object-contain"
+                  class="aspect-square h-auto w-full object-cover"
                 >
                 <span
                   v-if="isNewProduct"
