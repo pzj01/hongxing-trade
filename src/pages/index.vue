@@ -1,28 +1,32 @@
 <script setup lang="ts">
-import type { Product } from '~/types'
 import { products } from '~/data/products'
+import { Category, type Product } from '~/types'
 
 // 产品分类数据
 const categories = ref([
   {
-    name: '休闲食品',
-    description: '精选各类美味小吃与休闲零食，满足您随时随地的味蕾享受',
-    image: '/category-snacks.svg',
+    name: '禽类制品',
+    category: Category.Meatballs,
+    description: '精选优质禽肉与禽蛋，营养丰富，口感鲜美，为健康饮食提供理想选择。',
+    image: '/肉鸡.jpg',
   },
   {
     name: '肉类制品',
-    description: '优质鸡排、鸡肉及其他健康肉类食品，带来营养与美味的完美结合',
-    image: '/category-nuts.svg',
+    category: Category.MeatProducts,
+    description: '优选牛肉、猪肉等肉类食材，品质卓越，兼顾美味与营养，满足多样化需求。',
+    image: '/meat.jpg',
   },
   {
     name: '海鲜鱼类',
-    description: '新鲜虾、鱼、蟹等海鲜精心加工，呈现海洋的鲜美风味',
-    image: '/category-drinks.svg',
+    category: Category.SeafoodProducts,
+    description: '新鲜鱼、虾、蟹等海鲜，精心加工，保留海洋原味，带来舌尖上的鲜美享受。',
+    image: '/seafood.jpg',
   },
   {
-    name: '地方特产',
-    description: '汇集全国各地特色美食与传统佳肴，传承地道风味，彰显文化魅力',
-    image: '/category-local.svg',
+    name: '早餐及其他',
+    category: Category.DumplingsAndBuns,
+    description: '多样早餐食品及其他营养美食，方便快捷，为每一天注入活力与美味。',
+    image: '/Sliced Apples and Coffee.jpg',
   },
 ])
 
@@ -46,7 +50,7 @@ const advantages = ref([
 ])
 
 // 热销产品数据
-const hotProducts = ref<Product[]>(products.slice(0, 7))
+const hotProducts = ref<Product[]>(products.filter(p => p.category === Category.Meatballs).slice(0, 7))
 
 // 轮播图响应式配置
 const carouselResponsiveOptions = ref([
@@ -137,7 +141,7 @@ const testimonials = ref([
 
           <div class="grid grid-cols-1 gap-8 lg:grid-cols-4 sm:grid-cols-2">
             <div v-for="(category, index) in categories" :key="index" class="overflow-hidden rounded-lg bg-white shadow-md transition-transform duration-300 hover:shadow-lg hover:-translate-y-1">
-              <!-- <img :src="category.image" :alt="category.name" class="h-48 w-full object-cover"> -->
+              <img :src="category.image" :alt="category.name" class="h-48 w-full object-cover">
               <div class="p-5">
                 <h3 class="mb-2 text-xl text-gray-800 font-semibold">
                   {{ category.name }}
@@ -145,7 +149,7 @@ const testimonials = ref([
                 <p class="mb-4 text-gray-600">
                   {{ category.description }}
                 </p>
-                <Button label="查看详情" class="p-button-text p-button-success" icon="pi pi-arrow-right" icon-pos="right" />
+                <Button label="查看详情" class="p-button-text p-button-success" icon="pi pi-arrow-right" icon-pos="right" aria-label="查看详情" @click="$router.push(`/products?category=${category.category}`)" />
               </div>
             </div>
           </div>
@@ -192,11 +196,11 @@ const testimonials = ref([
             </p>
           </div>
 
-          <Carousel :value="hotProducts" :num-visible="3" :num-scroll="1" :responsive-options="carouselResponsiveOptions" class="mb-8">
+          <Carousel :autoplay-interval="3000" :value="hotProducts" :num-visible="3" :num-scroll="1" :responsive-options="carouselResponsiveOptions" class="mb-8">
             <template #item="slotProps">
               <div class="p-4">
                 <div class="overflow-hidden border border-gray-200 rounded-lg bg-white shadow-sm">
-                  <!-- <img :src="slotProps.data.image" :alt="slotProps.data.name" class="h-48 w-full object-cover"> -->
+                  <img :src="slotProps.data.image" :alt="slotProps.data.name" class="h-48 w-full object-cover">
                   <div class="p-4">
                     <h3 class="mb-2 text-lg text-gray-800 font-semibold">
                       {{ slotProps.data.name }}
@@ -215,7 +219,7 @@ const testimonials = ref([
           </Carousel>
 
           <div class="text-center">
-            <Button label="查看全部产品" class="p-button-outlined p-button-success" />
+            <Button label="查看全部产品" class="p-button-outlined p-button-success" @click="$router.push('/products')" />
           </div>
         </div>
       </section>

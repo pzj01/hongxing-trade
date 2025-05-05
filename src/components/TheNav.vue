@@ -1,15 +1,22 @@
 <script setup lang="ts">
-// const keywordValue = inject<string>('keyword', '')
+import { products } from '~/data/products'
 
-// const router = useRouter()
-// const keyword = ref(keywordValue || '')
+// const keywordValue = useLocalStorage('search', '')
 
-// function onSearch() {
-//   const value = keyword.value.trim()
-//   if (value) {
-//     router.push(`/search?keyword=${value}`)
-//   }
-// }
+const router = useRouter()
+const keyword = ref('')
+
+// watch(keyword, (value) => {
+//   keywordValue.value = value
+// })
+
+function onSearch() {
+  const value = keyword.value.trim()
+  const productId = products.find(product => product.name === value)?.id
+  if (productId) {
+    router.push(`/details/${productId}`)
+  }
+}
 
 // 移动端菜单状态
 const menuVisible = ref(false)
@@ -30,13 +37,13 @@ const menuVisible = ref(false)
         </div>
 
         <nav class="hidden items-center lg:flex space-x-8">
-          <!-- <IconField>
+          <IconField>
             <InputIcon class="i-carbon-search" />
             <InputText v-model="keyword" size="small" placeholder="搜索产品..." @keydown.enter="onSearch" />
             <Button ml-2 size="small" @click="onSearch">
               搜索
             </Button>
-          </IconField> -->
+          </IconField>
           <RouterLink to="/" active-class="text-green-600" class="font-medium hover:text-green-600">
             首页
           </RouterLink>

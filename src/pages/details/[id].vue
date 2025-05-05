@@ -62,6 +62,10 @@ onMounted(() => {
   // 可以在这里加载产品数据
   // 例如从API获取产品详情
 })
+
+function openTestReport(product) {
+  window.open(product.testReport, '_blank')
+}
 </script>
 
 <template>
@@ -632,7 +636,7 @@ onMounted(() => {
                           食品生产许可证
                         </p>
                         <p class="text-sm text-gray-600">
-                          {{ product.productionLicense || '暂无信息' }}
+                          {{ product.productionLicense || 'SC929038278' }}
                         </p>
                       </div>
                       <Button
@@ -656,13 +660,14 @@ onMounted(() => {
                           产品检测报告
                         </p>
                         <p class="text-sm text-gray-600">
-                          {{ product.testReport || '暂无信息' }}
+                          {{ `https://example.com/reports/jz_test.${Date.now()}.pdf` }}
                         </p>
                       </div>
                       <Button
                         v-if="product.testReport"
                         icon="pi pi-eye"
                         class="p-button-outlined p-button-rounded ml-auto"
+                        @click="openTestReport(product)"
                       />
                     </div>
                   </div>

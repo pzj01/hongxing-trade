@@ -1,3 +1,7 @@
+<script setup lang="ts">
+import { Category } from '~/types'
+</script>
+
 <template>
   <!-- 页脚 -->
   <footer class="bg-gray-800 py-12 text-white">
@@ -31,10 +35,10 @@
             快速链接
           </h3>
           <ul class="space-y-2">
-            <li><a href="#" class="text-gray-400 hover:text-white">首页</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white">产品中心</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white">关于我们</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white">联系我们</a></li>
+            <li><a href="/" class="text-gray-400 hover:text-white">首页</a></li>
+            <li><a href="/products" class="text-gray-400 hover:text-white">产品中心</a></li>
+            <li><a href="/about" class="text-gray-400 hover:text-white">关于我们</a></li>
+            <li><a href="/contact" class="text-gray-400 hover:text-white">联系我们</a></li>
           </ul>
         </div>
 
@@ -43,10 +47,10 @@
             产品分类
           </h3>
           <ul class="space-y-2">
-            <li><a href="#" class="text-gray-400 hover:text-white">休闲食品</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white">肉类制品</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white">海鲜鱼类</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white">地方特产</a></li>
+            <li><a :href="`/products?category=${Category.Meatballs}`" class="text-gray-400 hover:text-white">禽类制品</a></li>
+            <li><a :href="`/products?category=${Category.MeatProducts}`" class="text-gray-400 hover:text-white">肉类制品</a></li>
+            <li><a :href="`/products?category=${Category.MeatProducts}`" class="text-gray-400 hover:text-white">海鲜鱼类</a></li>
+            <li><a :href="`/products?category=${Category.DumplingsAndBuns}`" class="text-gray-400 hover:text-white">早餐及其他</a></li>
           </ul>
         </div>
 

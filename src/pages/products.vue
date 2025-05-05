@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import type { Category, Product } from '~/types'
+import type { Product } from '~/types'
 import { products } from '~/data/products'
-import { CategoryList } from '~/types'
+import { Category, CategoryList } from '~/types'
 // 视图模式
 const viewMode = ref('grid') // 'grid' 或 'list'
+
+const route = useRoute()
 
 // 分页设置
 const pagination = ref({
@@ -24,7 +26,7 @@ const keyword = useLocalStorage('keyword', '')
 // 筛选条件
 const filters = ref({
   search: keyword.value,
-  selectedCategories: [] as Category[],
+  selectedCategories: [route.query.category || Category.Meatballs] as Category[],
   priceRange: [0, 500],
   sortBy: 'default',
 })
@@ -47,8 +49,7 @@ const filteredProducts = computed(() => {
   if (filters.value.search) {
     const searchLower = filters.value.search.toLowerCase()
     result = result.filter(product =>
-      product.name.toLowerCase().includes(searchLower)
-      || product.description.toLowerCase().includes(searchLower),
+      product.name.includes(searchLower),
     )
   }
 
@@ -294,7 +295,7 @@ onMounted(() => {
                         @click="addToCart(product)"
                       /> -->
                       <Button
-                        icon="pi pi-info"
+                        label="查看详情"
                         class="p-button-rounded p-button-success p-button-sm"
                         @click="$router.push(`/details/${product.id}`)"
                       />
@@ -346,7 +347,6 @@ onMounted(() => {
                         /> -->
                         <Button
                           label="查看详情"
-                          icon="pi pi-info"
                           class="p-button-success p-button-sm"
                           @click="$router.push(`/details/${product.id}`)"
                         />
