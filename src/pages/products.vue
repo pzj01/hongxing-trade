@@ -26,7 +26,7 @@ const keyword = useLocalStorage('keyword', '')
 // 筛选条件
 const filters = ref({
   search: keyword.value,
-  selectedCategories: [route.query.category || Category.Meatballs] as Category[],
+  selectedCategories: [route.query.category || Category.DumplingsAndBuns] as Category[],
   priceRange: [0, 500],
   sortBy: 'default',
 })
@@ -221,7 +221,7 @@ onMounted(() => {
                   />
                   <Button
                     icon="pi pi-refresh"
-                    class="p-button-outlined p-button-success"
+                    class="p-button-success p-button-outlined"
                     aria-label="重置筛选"
                     @click="resetFilters"
                   />
@@ -296,7 +296,7 @@ onMounted(() => {
                       /> -->
                       <Button
                         label="查看详情"
-                        class="p-button-rounded p-button-success p-button-sm"
+                        class="p-button-success p-button-rounded p-button-sm"
                         @click="$router.push(`/details/${product.id}`)"
                       />
                     </div>
