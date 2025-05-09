@@ -74,7 +74,7 @@ function openTestReport(product) {
       <!-- 产品基本信息 -->
       <section class="bg-white py-8 md:py-12">
         <div class="mx-auto px-4 container">
-          <Button class="mb-4!" label="返回" icon="pi pi-arrow-left" @click="$router.back()" />
+          <Button class="mb-4!" label="返回" icon="pi pi-arrow-left" @click="$router.push('/products')" />
           <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:gap-12">
             <!-- 产品图片 -->
             <div class="product-images">
