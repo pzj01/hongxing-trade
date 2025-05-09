@@ -6519,7 +6519,7 @@ export const products: Product[] = [
     image: '/products/面粉/image.jpg',
   },
   {
-    id: 79,
+    id: 87,
     name: '盐',
     description: '精制食用盐，颗粒细腻，适合烹饪和调味。',
     category: Category.Oil,

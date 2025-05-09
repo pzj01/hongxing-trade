@@ -3,10 +3,10 @@ import useVuelidate from '@vuelidate/core'
 import { minLength, required } from '@vuelidate/validators'
 import { products } from '~/data/products'
 
-const { params } = useRoute()
+const route = useRoute()
 
 // 模拟产品数据
-const product = ref(products.find(product => product.id === +params.id))
+const product = computed(() => products.find(product => product.id === +route.params.id))
 
 // 用户反馈表单
 const feedbackForm = ref({
