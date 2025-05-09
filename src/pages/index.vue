@@ -6,7 +6,7 @@ import { Category, type Product } from '~/types'
 const categories = ref([
   {
     name: '禽类制品',
-    category: Category.Meatballs,
+    category: Category.PoultryProducts,
     description: '精选优质禽肉与禽蛋，营养丰富，口感鲜美，为健康饮食提供理想选择。',
     image: '/肉鸡.jpg',
   },
@@ -18,13 +18,13 @@ const categories = ref([
   },
   {
     name: '海鲜鱼类',
-    category: Category.SeafoodProducts,
+    category: Category.Other,
     description: '新鲜鱼、虾、蟹等海鲜，精心加工，保留海洋原味，带来舌尖上的鲜美享受。',
     image: '/seafood.jpg',
   },
   {
     name: '早餐及其他',
-    category: Category.DumplingsAndBuns,
+    category: Category.Breakfast,
     description: '多样早餐食品及其他营养美食，方便快捷，为每一天注入活力与美味。',
     image: '/Sliced Apples and Coffee.jpg',
   },
@@ -50,7 +50,7 @@ const advantages = ref([
 ])
 
 // 热销产品数据
-const hotProducts = ref<Product[]>(products.filter(p => p.category === Category.Meatballs).slice(0, 7))
+const hotProducts = ref<Product[]>(products.filter(p => p.category === Category.Breakfast).slice(0, 7))
 
 // 轮播图响应式配置
 const carouselResponsiveOptions = ref([
@@ -149,7 +149,7 @@ const testimonials = ref([
                 <p class="mb-4 text-gray-600">
                   {{ category.description }}
                 </p>
-                <Button label="查看详情" class="p-button-text p-button-success" icon="pi pi-arrow-right" icon-pos="right" aria-label="查看详情" @click="$router.push(`/products?category=${category.category}`)" />
+                <Button label="查看详情" class="p-button-success p-button-text" icon="pi pi-arrow-right" icon-pos="right" aria-label="查看详情" @click="$router.push(`/products?category=${category.category}`)" />
               </div>
             </div>
           </div>
@@ -210,7 +210,7 @@ const testimonials = ref([
                     </p>
                     <div class="flex items-center justify-between">
                       <span class="text-green-600 font-bold">¥{{ slotProps.data.price }}</span>
-                      <Button icon="pi pi-shopping-cart" class="p-button-rounded p-button-success p-button-sm" />
+                      <Button icon="pi pi-shopping-cart" class="p-button-success p-button-rounded p-button-sm" />
                     </div>
                   </div>
                 </div>

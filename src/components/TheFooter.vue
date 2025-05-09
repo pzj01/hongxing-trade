@@ -47,10 +47,10 @@ import { Category } from '~/types'
             产品分类
           </h3>
           <ul class="space-y-2">
-            <li><a :href="`/products?category=${Category.Meatballs}`" class="text-gray-400 hover:text-white">禽类制品</a></li>
+            <li><a :href="`/products?category=${Category.PoultryProducts}`" class="text-gray-400 hover:text-white">禽类制品</a></li>
             <li><a :href="`/products?category=${Category.MeatProducts}`" class="text-gray-400 hover:text-white">肉类制品</a></li>
-            <li><a :href="`/products?category=${Category.MeatProducts}`" class="text-gray-400 hover:text-white">海鲜鱼类</a></li>
-            <li><a :href="`/products?category=${Category.DumplingsAndBuns}`" class="text-gray-400 hover:text-white">早餐及其他</a></li>
+            <li><a :href="`/products?category=${Category.Breakfast}`" class="text-gray-400 hover:text-white">早餐</a></li>
+            <li><a :href="`/products?category=${Category.Other}`" class="text-gray-400 hover:text-white">其他类</a></li>
           </ul>
         </div>
 

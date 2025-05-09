@@ -26,7 +26,7 @@ const keyword = useLocalStorage('keyword', '')
 // 筛选条件
 const filters = ref({
   search: keyword.value,
-  selectedCategories: [route.query.category || Category.DumplingsAndBuns] as Category[],
+  selectedCategories: [route.query.category || Category.Breakfast] as Category[],
   priceRange: [0, 500],
   sortBy: 'default',
 })
