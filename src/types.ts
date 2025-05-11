@@ -95,6 +95,7 @@ export const CategoryList: Category[] = [
   Category.PoultryProducts,
   Category.MeatProducts,
   Category.VegetableProducts,
+  Category.Seasoning,
   Category.Other,
   Category.Oil,
   Category.Breakfast,
